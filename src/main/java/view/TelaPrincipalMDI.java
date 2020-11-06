@@ -30,9 +30,9 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
     private void initComponents() {
 
         descktopCadUser = new javax.swing.JDesktopPane();
-        menuCadUser = new javax.swing.JMenuBar();
-        menuArquivo = new javax.swing.JMenu();
-        menuSair = new javax.swing.JMenuItem();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -54,19 +54,14 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
-        menuArquivo.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\folder.png")); // NOI18N
-        menuArquivo.setText("Arquivo");
+        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\folder.png")); // NOI18N
+        jMenu1.setText("Arquivo");
 
-        menuSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\door_out.png")); // NOI18N
-        menuSair.setText("Sair");
-        menuSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSairActionPerformed(evt);
-            }
-        });
-        menuArquivo.add(menuSair);
+        jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\door_out.png")); // NOI18N
+        jMenuItem1.setText("Sair");
+        jMenu1.add(jMenuItem1);
 
-        menuCadUser.add(menuArquivo);
+        jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user.png")); // NOI18N
         jMenu2.setText("Usuario");
@@ -97,9 +92,10 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
-        menuCadUser.add(jMenu2);
+        jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Sobre");
+<<<<<<< HEAD
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\information.png")); // NOI18N
         jMenuItem1.setText("Informações");
@@ -111,8 +107,11 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         jMenu4.add(jMenuItem1);
 
         menuCadUser.add(jMenu4);
+=======
+        jMenuBar1.add(jMenu4);
+>>>>>>> parent of d420351... Telas MDI e SDI
 
-        setJMenuBar(menuCadUser);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,6 +137,7 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         telaCadUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+<<<<<<< HEAD
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
     
         TelaEntrada te = new TelaEntrada();
@@ -165,6 +165,8 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+=======
+>>>>>>> parent of d420351... Telas MDI e SDI
     /**
      * @param args the command line arguments
      */
@@ -202,15 +204,17 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane descktopCadUser;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
+<<<<<<< HEAD
+=======
+    private javax.swing.JMenuBar jMenuBar1;
+>>>>>>> parent of d420351... Telas MDI e SDI
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenu menuArquivo;
-    private javax.swing.JMenuBar menuCadUser;
-    private javax.swing.JMenuItem menuSair;
     // End of variables declaration//GEN-END:variables
 }

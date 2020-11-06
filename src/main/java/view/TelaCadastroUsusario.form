@@ -51,15 +51,20 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCadUser" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="boxTipoUsuario" max="32767" attributes="0"/>
                           </Group>
+<<<<<<< HEAD
                           <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtRepSenha" pref="276" max="32767" attributes="0"/>
                           <Component id="jFormattedTextField1" alignment="0" max="32767" attributes="0"/>
+=======
+                          <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPasswordField2" pref="276" max="32767" attributes="0"/>
+>>>>>>> parent of d420351... Telas MDI e SDI
                       </Group>
                   </Group>
                   <EmptySpace pref="66" max="32767" attributes="0"/>
@@ -72,15 +77,15 @@
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtCadUser" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtSenha" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtRepSenha" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordField2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,6 +123,7 @@
             <Property name="text" type="java.lang.String" value="Tipo de Usuario"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="txtCadUser">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Digite seu nome de Usuario"/>
@@ -132,6 +138,13 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Repita a senha do campo acima"/>
           </Properties>
+=======
+        <Component class="javax.swing.JTextField" name="jTextField1">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jPasswordField2">
+>>>>>>> parent of d420351... Telas MDI e SDI
         </Component>
         <Component class="javax.swing.JComboBox" name="boxTipoUsuario">
           <Properties>
