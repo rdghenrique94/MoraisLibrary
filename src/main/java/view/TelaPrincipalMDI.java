@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rodri
@@ -37,6 +39,7 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +100,16 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         menuCadUser.add(jMenu2);
 
         jMenu4.setText("Sobre");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\information.png")); // NOI18N
+        jMenuItem1.setText("Informações");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
         menuCadUser.add(jMenu4);
 
         setJMenuBar(menuCadUser);
@@ -126,8 +139,31 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
-        System.exit(0);
+    
+        TelaEntrada te = new TelaEntrada();
+        te.setVisible(true);
+        this.dispose();
+        //System.exit(0);  
     }//GEN-LAST:event_menuSairActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        JOptionPane.showMessageDialog(null, "MORAIS LIBRARY"
+                + "\n"
+                + "\n"
+                + "Idealizadora: Dr. Alana Morais"
+                + "\n"
+                + "\n"
+                + "Desenvolvedores: Rodrigo Andrade, Marlyson Xavier, Antônio Marcos"
+                + "\n"
+                + "\n"
+                + "Projeto apresentado referente a nota da segunda avaliação da cadeira: Linguagem de Programação II"
+                + " onde devemos criar um software que controle e organize uma biblioteca"
+                + "\n"
+                + "\n"
+                + "Agradeço a Deus e a meus colegas por todo o trabalho desempenhado e todo o tempo gasto. ");
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,6 +204,7 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
     private javax.swing.JDesktopPane descktopCadUser;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
