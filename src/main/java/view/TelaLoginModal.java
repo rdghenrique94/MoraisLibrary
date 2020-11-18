@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,6 +48,12 @@ public class TelaLoginModal extends javax.swing.JDialog {
         jLabel1.setText("Login");
 
         jLabel2.setText("Senha");
+
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
 
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,11 +123,13 @@ public class TelaLoginModal extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public boolean checkLogin(String login, String senha){
+        return login.equals("usuario") && senha.equals("123");
+}
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if(txtLogin.getText().equals("Maria")&&txtSenha.getText().equals("123")){
-            login = txtLogin.getText();
-            senha = txtSenha.getText();
+        if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
+            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
@@ -131,6 +140,18 @@ public class TelaLoginModal extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER ){
+             if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
+                 JOptionPane.showMessageDialog(null, "Logado com Sucesso!");
+                this.dispose();
+        }   else{
+                JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
+        }
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments

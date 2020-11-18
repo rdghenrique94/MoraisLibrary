@@ -29,36 +29,53 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        descktopCadUser = new javax.swing.JDesktopPane();
+        desktopCadUser = new javax.swing.JDesktopPane();
+        desktopCadLivros = new javax.swing.JDesktopPane();
         menuCadUser = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         menuSair = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuUser = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        menuLivro = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Area do Funcionario");
 
-        javax.swing.GroupLayout descktopCadUserLayout = new javax.swing.GroupLayout(descktopCadUser);
-        descktopCadUser.setLayout(descktopCadUserLayout);
-        descktopCadUserLayout.setHorizontalGroup(
-            descktopCadUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        javax.swing.GroupLayout desktopCadLivrosLayout = new javax.swing.GroupLayout(desktopCadLivros);
+        desktopCadLivros.setLayout(desktopCadLivrosLayout);
+        desktopCadLivrosLayout.setHorizontalGroup(
+            desktopCadLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1026, Short.MAX_VALUE)
         );
-        descktopCadUserLayout.setVerticalGroup(
-            descktopCadUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+        desktopCadLivrosLayout.setVerticalGroup(
+            desktopCadLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 762, Short.MAX_VALUE)
+        );
+
+        desktopCadUser.setLayer(desktopCadLivros, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout desktopCadUserLayout = new javax.swing.GroupLayout(desktopCadUser);
+        desktopCadUser.setLayout(desktopCadUserLayout);
+        desktopCadUserLayout.setHorizontalGroup(
+            desktopCadUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(desktopCadLivros)
+        );
+        desktopCadUserLayout.setVerticalGroup(
+            desktopCadUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(desktopCadLivros)
         );
 
         menuArquivo.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\folder.png")); // NOI18N
-        menuArquivo.setText("Arquivo");
+        menuArquivo.setText("Iniciar");
 
         menuSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\door_out.png")); // NOI18N
-        menuSair.setText("Sair");
+        menuSair.setText("Logout");
         menuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuSairActionPerformed(evt);
@@ -68,8 +85,8 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
 
         menuCadUser.add(menuArquivo);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user.png")); // NOI18N
-        jMenu2.setText("Usuario");
+        menuUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user.png")); // NOI18N
+        menuUser.setText("Usuario");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user_add.png")); // NOI18N
         jMenuItem2.setText("Cadastrar");
@@ -78,15 +95,15 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        menuUser.add(jMenuItem2);
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user_edit.png")); // NOI18N
         jMenuItem3.setText("Editar");
-        jMenu2.add(jMenuItem3);
+        menuUser.add(jMenuItem3);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user_delete.png")); // NOI18N
         jMenuItem4.setText("Excluir");
-        jMenu2.add(jMenuItem4);
+        menuUser.add(jMenuItem4);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\user_comment.png")); // NOI18N
         jMenuItem5.setText("Pesquisar");
@@ -95,10 +112,25 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        menuUser.add(jMenuItem5);
 
-        menuCadUser.add(jMenu2);
+        menuCadUser.add(menuUser);
 
+        menuLivro.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\book.png")); // NOI18N
+        menuLivro.setText("Livros");
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\book_add.png")); // NOI18N
+        jMenuItem6.setText("Cadastrar Livros");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        menuLivro.add(jMenuItem6);
+
+        menuCadUser.add(menuLivro);
+
+        jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\exclamation.png")); // NOI18N
         jMenu4.setText("Sobre");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\information.png")); // NOI18N
@@ -118,14 +150,15 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(descktopCadUser)
+            .addComponent(desktopCadUser)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(descktopCadUser)
+            .addComponent(desktopCadUser)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -134,12 +167,12 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         TelaCadastroUsusario telaCadUser = new TelaCadastroUsusario();
-        descktopCadUser.add(telaCadUser);
+        desktopCadUser.add(telaCadUser);
         telaCadUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
-    
+        JOptionPane.showMessageDialog(null, "Usuario ");
         TelaEntrada te = new TelaEntrada();
         te.setVisible(true);
         this.dispose();
@@ -164,6 +197,12 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
                 + "Agradeço a Deus e a meus colegas por todo o trabalho desempenhado e todo o tempo gasto. ");
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        LivroAdd tabelaLiv = new LivroAdd();
+        desktopCadLivros.add(tabelaLiv);
+        tabelaLiv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,16 +240,19 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane descktopCadUser;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JDesktopPane desktopCadLivros;
+    private javax.swing.JDesktopPane desktopCadUser;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuCadUser;
+    private javax.swing.JMenu menuLivro;
     private javax.swing.JMenuItem menuSair;
+    private javax.swing.JMenu menuUser;
     // End of variables declaration//GEN-END:variables
 }
