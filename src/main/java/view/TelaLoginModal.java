@@ -44,6 +44,7 @@ public class TelaLoginModal extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Acesso");
 
         jLabel1.setText("Login");
 

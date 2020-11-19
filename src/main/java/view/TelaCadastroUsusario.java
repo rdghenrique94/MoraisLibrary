@@ -45,6 +45,8 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Usuario"));
         setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jLabel1.setText("Usuario");
 

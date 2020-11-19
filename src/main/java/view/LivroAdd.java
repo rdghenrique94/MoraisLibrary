@@ -7,6 +7,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -19,6 +20,9 @@ public class LivroAdd extends javax.swing.JInternalFrame {
      */
     public LivroAdd() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabelaAddLivro.getModel(); // FAZER ORDENAÇÃO NA TABELA
+        tabelaAddLivro.setRowSorter(new TableRowSorter(modelo));
     }
 
     /**
@@ -46,6 +50,8 @@ public class LivroAdd extends javax.swing.JInternalFrame {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Livros"));
         setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jLabel1.setText("LIVRO");
 
@@ -152,8 +158,8 @@ public class LivroAdd extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -182,13 +188,13 @@ public class LivroAdd extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAddLivro.getModel();
+        DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAddLivro.getModel();         //ADICIONAR ITENS NA TABELA
         Object[] dados = {txtLivro.getText(), txtAutor.getText(), txtEditora.getText()};
         dtmLivros.addRow(dados);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //        System.out.println("Linha Selecionada"+tabelaLivros.getSelectedRow());
+        //        System.out.println("Linha Selecionada"+tabelaLivros.getSelectedRow());    REMOVER LINHA SELECIONADA NA TABELA
 
         if (tabelaAddLivro.getSelectedRow() != -1){
         DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAddLivro.getModel();
@@ -211,7 +217,7 @@ public class LivroAdd extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaAddLivroMouseClicked
 
     private void tabelaAddLivroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaAddLivroKeyReleased
-         if (tabelaAddLivro.getSelectedRow() != -1){
+         if (tabelaAddLivro.getSelectedRow() != -1){                                        //EDITAR ITENS DA TABELA
             txtLivro.setText(tabelaAddLivro.getValueAt(tabelaAddLivro.getSelectedRow(), 0).toString());
             txtAutor.setText(tabelaAddLivro.getValueAt(tabelaAddLivro.getSelectedRow(), 1).toString());
             txtEditora.setText(tabelaAddLivro.getValueAt(tabelaAddLivro.getSelectedRow(), 2).toString());
