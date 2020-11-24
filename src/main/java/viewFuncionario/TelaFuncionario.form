@@ -97,7 +97,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="C:\Users\rodri\Documents\NetBeansProjects\MoraisLibrary\src\main\resouces\icons\book_open.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Livros Temp"/>
+                <Property name="text" type="java.lang.String" value="Ficha Catalogr&#xe1;fica"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>

@@ -1,6 +1,5 @@
 package viewFuncionario;
 
-import view.TelaEntrada;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import view.TelaLogin;
 
 
 public class TelaFuncionario extends javax.swing.JFrame {
@@ -114,7 +114,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuLivro.add(jMenuItem6);
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\book_open.png")); // NOI18N
-        jMenuItem7.setText("Livros Temp");
+        jMenuItem7.setText("Ficha Catalográfica");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -181,8 +181,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
         JOptionPane.showMessageDialog(null, "Usuario Deslogado \nVoltando Para Tela de Login");
-        TelaEntrada te = new TelaEntrada();
-        te.setVisible(true);
+        TelaLogin tl = new TelaLogin();
+        tl.setVisible(true);
         this.dispose();
         //System.exit(0);  
     }//GEN-LAST:event_menuSairActionPerformed
@@ -214,9 +214,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-        ArquiSelect arqui = new ArquiSelect();
-        desktopFuncionario.add(arqui);
-        arqui.setVisible(true);
+        FichaCatalografica fch = new FichaCatalografica();
+        desktopFuncionario.add(fch);
+        fch.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
