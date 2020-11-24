@@ -7,7 +7,6 @@ Projeto referente a segunda nota da matéria de Linguagem de Programação II
 
 1. Rodrigo Henrique Soares de Oliveira Andrade - rodrigo_h_soares@hotmail.com
 2. Marlyson Teodozio Xavier - marlysonnxavier@gmail.com
-3. Antônio Marcos de Macêdo Cavalcanti - marcos.c1337@gmail.com
 
 #### Instalação: 
 
