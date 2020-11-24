@@ -81,7 +81,7 @@ public class TelaEntrada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             
-        TelaLogin tln = new TelaLogin(this, true);
+        TelaLogin1 tln = new TelaLogin1(this, true);
         tln.setVisible(true);
         TelaFuncionario tp = new TelaFuncionario();
         tp.setVisible(true);
