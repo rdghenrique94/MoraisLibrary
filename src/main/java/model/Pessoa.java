@@ -3,17 +3,19 @@ package model;
 public class Pessoa {
     
     private String nome;
-    private String senha;
-    private Double matricula;
+    private int cpf;
+    private double matricula;
+    
+
+    public Pessoa(String nome, int cpf, double matricula) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.matricula = matricula;
+        
+    }
     
     public Pessoa(){
         
-    }
-
-    public Pessoa(String nome, String senha, Double matricula) {
-        this.nome = nome;
-        this.senha = senha;
-        this.matricula = matricula;
     }
 
     public String getNome() {
@@ -24,20 +26,27 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getSenha() {
-        return senha;
+    public int getCpf() {
+        return cpf;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setCpf(Integer cpf) {
+        this.cpf = cpf;
     }
 
-    public Double getMatricula() {
+    public double getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Double matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
+
+    @Override
+    public String toString(){
+        return "Nome: "+this.nome+", CPF: "+this.cpf;
+    }
+
+   
 }
 

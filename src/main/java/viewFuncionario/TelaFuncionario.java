@@ -28,6 +28,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario = new javax.swing.JDesktopPane();
         menuCadUser = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
         menuUser = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -39,6 +40,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -58,6 +60,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         menuArquivo.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\folder.png")); // NOI18N
         menuArquivo.setText("Iniciar");
+
+        jMenuItem9.setText("Alugar Livro");
+        menuArquivo.add(jMenuItem9);
 
         menuSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\door_out.png")); // NOI18N
         menuSair.setText("Logout");
@@ -137,6 +142,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenu1.add(jMenuItem8);
 
         menuCadUser.add(jMenu1);
+
+        jMenu2.setText("Eventos");
+        menuCadUser.add(jMenu2);
 
         jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\exclamation.png")); // NOI18N
         jMenu4.setText("Sobre");
@@ -277,6 +285,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopFuncionario;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -286,6 +295,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuCadUser;
     private javax.swing.JMenu menuLivro;

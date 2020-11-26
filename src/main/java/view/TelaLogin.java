@@ -5,7 +5,14 @@
  */
 package view;
 
+import database.DataBase;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import viewFuncionario.TelaFuncionario;
 
@@ -121,15 +128,35 @@ public class TelaLogin extends javax.swing.JFrame {
         return login.equals("usuario") && senha.equals("123");
 }
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-
-        if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
-            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
-            TelaFuncionario tf = new TelaFuncionario();
-            tf.setVisible(true);
-            this.dispose();
-        }else{
+        String buscaNome = "SELECT NOME, PSW FROM PESSOA";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+            ResultSet resultSet = pstmt.executeQuery();
+            login = txtLogin.getText();
+            String senha = String.valueOf(txtSenha.getPassword());
+            while(resultSet.next()){
+                System.out.println(resultSet);
+                if (login.equals(resultSet)&&senha.equals(resultSet)){
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+                    TelaFuncionario tf = new TelaFuncionario();
+                    tf.setVisible(true);
+                    this.dispose();
+                }else{
+                    
+                }
+            }
+        }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
-        }
+            }
+         
+//        if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
+//            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+//            TelaFuncionario tf = new TelaFuncionario();
+//            tf.setVisible(true);
+//            this.dispose();
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
+//        }
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -139,14 +166,26 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER ){
-             if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
-                JOptionPane.showMessageDialog(null, "Logado com Sucesso!");
-                TelaFuncionario tf = new TelaFuncionario();
-                tf.setVisible(true);
-                this.dispose();
-        }   else{
-                JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
-        }
+             String buscaNome = "SELECT NOME, PSW FROM PESSOA";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+            ResultSet resultSet = pstmt.executeQuery();
+            login = txtLogin.getText();
+            String senha = String.valueOf(txtSenha.getPassword());
+            while(resultSet.next()){
+                System.out.println(resultSet);
+                if (login.equals(resultSet)&&senha.equals(resultSet)){
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+                    TelaFuncionario tf = new TelaFuncionario();
+                    tf.setVisible(true);
+                    this.dispose();
+                }else{
+                    
+                }
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
+            }
         }
     }//GEN-LAST:event_txtSenhaKeyPressed
 

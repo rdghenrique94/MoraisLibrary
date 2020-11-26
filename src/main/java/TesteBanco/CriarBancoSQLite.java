@@ -14,11 +14,12 @@ public class CriarBancoSQLite {
 
     public void criarTabelaPessoa() {
 
-        String sql = "CREATE TABLE IF NOT EXISTS tbl_pessoa"
+        String sql = "CREATE TABLE IF NOT EXISTS produto"
                 + "("
                 + "id integer PRIMARY KEY,"
                 + "nome text NOT NULL,"
-                + "idade integer"
+                + "cpf integer"
+                + "matricula text NOT NULL"
                 + ");";
 
         //executando o sql de criar tabelas

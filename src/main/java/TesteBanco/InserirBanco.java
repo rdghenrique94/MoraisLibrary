@@ -16,7 +16,7 @@ public class InserirBanco {
 
         criarBancoSQLite.criarTabelaPessoa();
 
-        Pessoa pessoa1 = new Pessoa();
+        Produto pessoa1 = new Produto();
         pessoa1.setId(20);
         pessoa1.setNome("Rodrigo");
         pessoa1.setIdade(26);
