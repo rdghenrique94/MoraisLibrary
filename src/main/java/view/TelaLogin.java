@@ -7,12 +7,6 @@ package view;
 
 import database.DataBase;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import viewFuncionario.TelaFuncionario;
 
@@ -44,7 +38,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtLogin = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         btEntrar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
@@ -55,9 +49,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha");
 
-        txtLogin.addActionListener(new java.awt.event.ActionListener() {
+        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLoginActionPerformed(evt);
+                txtMatriculaActionPerformed(evt);
             }
         });
 
@@ -92,7 +86,7 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btEntrar))
-                    .addComponent(txtLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING))
@@ -104,7 +98,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -131,11 +125,15 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     public boolean checkLogin(String login, String senha){
-        return login.equals("usuario") && senha.equals("123");
+        return login.equals(txtMatricula.getText()) && senha.equals(txtSenha.getPassword());
 }
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-
-
+            DataBase db = new DataBase();
+            String mat = txtMatricula.getText();
+            String pass = String.valueOf(txtSenha.getPassword());
+            db.sele_UserSenha(mat, pass);
+            
+            
 //        if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
 //            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
 //            TelaFuncionario tf = new TelaFuncionario();
@@ -155,7 +153,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            
+            DataBase db = new DataBase();
+            String mat = txtMatricula.getText();
+            String pass = String.valueOf(txtSenha.getPassword());
+            db.sele_UserSenha(mat, pass);
 //            if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
 //            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
 //            TelaFuncionario tf = new TelaFuncionario();
@@ -170,9 +171,9 @@ public class TelaLogin extends javax.swing.JFrame {
              
     }//GEN-LAST:event_txtSenhaKeyPressed
 
-    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoginActionPerformed
+    }//GEN-LAST:event_txtMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +216,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextField txtMatricula;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import viewAluno.TelaAluno;
+import viewFuncionario.TelaFuncionario;
 
 public class DataBase {    
     
@@ -209,7 +212,7 @@ public class DataBase {
     }
     */    
     
-    public void sele_UserSenha() {        
+    public void sele_UserSenha(String matricula, String senha) {        
         String buscaNome = "SELECT * FROM PESSOA";
         try (Connection conn = this.connect();                
             PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
@@ -219,7 +222,21 @@ public class DataBase {
                 String mat = resultSet.getString("MATRICULA");
                 String pass = resultSet.getString("PSW");
                 Integer func = resultSet.getInt("FUNCAO");
-                System.out.println(mat+pass+func);
+            
+                if(matricula.equals(mat)&&senha.equals(pass)&&func==4){
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+                    TelaFuncionario tf = new TelaFuncionario();
+                    tf.setVisible(true);
+                    
+                }else if(matricula.equals(mat)&&senha.equals(pass)&& func==3 || func==2 || func==1) {
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+                    TelaAluno ta = new TelaAluno();
+                    ta.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Dados Informados Incorretos!");
+                    
+                }
+                //System.out.println(mat+pass+func);
             }
             pstmt.executeUpdate();            
         } catch (SQLException e) {
@@ -241,7 +258,7 @@ public class DataBase {
         //app.insertT_Aluno(1,"Marlyson T Xavier", "05967762418",20191022,"TI");
         //app.insertT_Funcao("", 6);
         //app.criaT_Acervo();
-        app.sele_UserSenha();
+        //app.sele_UserSenha();
         //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.insertT_Status("ATRASO", 4);
     }
