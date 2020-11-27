@@ -6,7 +6,6 @@
 package viewFuncionario;
 
 
-import database.DataBase;
 import javax.swing.JOptionPane;
 import model.bean.Pessoa;
 import model.dao.PessoaDAO;
@@ -47,9 +46,9 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtMatricula = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtCurso = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JFormattedTextField();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Usuario"));
         setClosable(true);
@@ -118,13 +117,13 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
 
         jLabel6.setText("CPF");
 
-        txtCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Curso");
+
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,8 +131,8 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRepSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,9 +165,9 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
                 .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +189,7 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
                     .addComponent(boxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -203,26 +202,22 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void cleanFields(){
+        txtNomeCompleto.setText("");
+        txtCPF.setText("");
+        txtCurso.setText("");
+        txtSenha.setText("");
+        txtRepSenha.setText("");
+        txtMatricula.setText("");
+    }
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-//        Pessoa p = new Pessoa(WIDTH, title, title, title, title, title, WIDTH);
-//        DataBase db = new DataBase();
-//        String senha = String.valueOf(txtSenha.getPassword());
-//        String repSenha = String.valueOf(txtRepSenha.getPassword());
-//        if (senha.equals(repSenha)){
-//            JOptionPane.showMessageDialog(null, "Cadastro Realizado");
-//            db.insertT_Pessoa(2, txtNomeCompleto.getText(), txtCPF.getText(), txtMatricula.getText(), txtCurso.getText()
-//                , senha, boxTipoUsuario.getSelectedIndex());
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Campos de senha invalido");
-//        }
-        
+
         Pessoa p = new Pessoa();
         PessoaDAO dao = new PessoaDAO();
         
@@ -236,10 +231,10 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
         p.setFuncao(boxTipoUsuario.getSelectedIndex());
        if (senha.equals(repSenha)){
             dao.create(p);
-            JOptionPane.showMessageDialog(null, p.toString());
+            
         }else{
             JOptionPane.showMessageDialog(null, "Campos de senha invalido");
-       }
+       }cleanFields();
        //JOptionPane.showMessageDialog(null, "Id: "+boxTipoUsuario.getSelectedIndex());
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -254,10 +249,6 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
     private void txtNomeCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeCompletoActionPerformed
         txtNomeCompleto.getText();
     }//GEN-LAST:event_txtNomeCompletoActionPerformed
-
-    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
-        txtMatricula.getText();
-    }//GEN-LAST:event_txtCPFActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         String trim = new String (txtSenha.getPassword()).trim();
@@ -280,7 +271,7 @@ public class TelaCadastroUsusario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCPF;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCurso;
     private javax.swing.JFormattedTextField txtMatricula;
     private javax.swing.JTextField txtNomeCompleto;

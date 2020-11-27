@@ -25,7 +25,7 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
-    public String login;
+    public String matricula;
     public String senha;
     
     public TelaLogin() {
@@ -54,6 +54,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setText("Matricula");
 
         jLabel2.setText("Senha");
+
+        txtLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLoginActionPerformed(evt);
+            }
+        });
 
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -128,32 +134,15 @@ public class TelaLogin extends javax.swing.JFrame {
         return login.equals("usuario") && senha.equals("123");
 }
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        String buscaNome = "SELECT NOME, PSW FROM PESSOA";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet resultSet = pstmt.executeQuery();
-            login = txtLogin.getText();
-            String senha = String.valueOf(txtSenha.getPassword());
-            while(resultSet.next()){
-                System.out.println(resultSet);
-                if (login.equals(resultSet)&&senha.equals(resultSet)){
-                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
-                    TelaFuncionario tf = new TelaFuncionario();
-                    tf.setVisible(true);
-                    this.dispose();
-                }else{
-                    
-                }
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
-            }
-         
+
+
 //        if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
 //            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
 //            TelaFuncionario tf = new TelaFuncionario();
 //            tf.setVisible(true);
 //            this.dispose();
+//            System.out.println(txtLogin.getText());
+//
 //        }else{
 //            JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
 //        }
@@ -166,28 +155,24 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER ){
-             String buscaNome = "SELECT NOME, PSW FROM PESSOA";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet resultSet = pstmt.executeQuery();
-            login = txtLogin.getText();
-            String senha = String.valueOf(txtSenha.getPassword());
-            while(resultSet.next()){
-                System.out.println(resultSet);
-                if (login.equals(resultSet)&&senha.equals(resultSet)){
-                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
-                    TelaFuncionario tf = new TelaFuncionario();
-                    tf.setVisible(true);
-                    this.dispose();
-                }else{
-                    
-                }
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
-            }
+            
+//            if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
+//            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+//            TelaFuncionario tf = new TelaFuncionario();
+//            tf.setVisible(true);
+//            this.dispose();
+//            String senha = String.valueOf(txtSenha.getPassword()).trim();
+//            System.out.println(senha);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Dados informados estão incorretos");
+//        }
         }
+             
     }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginActionPerformed
 
     /**
      * @param args the command line arguments

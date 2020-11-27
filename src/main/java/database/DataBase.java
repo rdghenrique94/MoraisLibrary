@@ -17,8 +17,7 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
         return conn;
-    }
-     public static void closeConnection(Connection conn){
+    }public static void closeConnection(Connection conn){
         if (conn!=null){
             try {
                 conn.close();
@@ -51,7 +50,7 @@ public class DataBase {
     public void criaT_Pessoa() {        
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
             Statement statement = conn.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS PESSOA(ID null, NOME VARCHAR not null, CPF INTEGER not null PRIMARY KEY, MATRICULA STRING not null UNIQUE, CURSO STRING, PSW INTEGER not null, FUNCAO INTEGER not null)");
+            statement.execute("CREATE TABLE IF NOT EXISTS PESSOA(ID INTEGER not null PRIMARY KEY AUTOINCREMENT, NOME VARCHAR not null, CPF INTEGER (11,11)not null UNIQUE, MATRICULA STRING not null, CURSO STRING, PSW INTEGER not null,FUNCAO INTEGER not null)");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -152,29 +151,17 @@ public class DataBase {
     }
     
     public void insertT_Pessoa(String nome, String cpf,String matricula, String curso, String psw, int funcao) {
-        
-                        
-        String buscaId = "SELECT ID FROM PESSOA";
-        String sql = "INSERT INTO PESSOA(ID, NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?,?)";
-        try (Connection conn = this.connect();
-                
-            PreparedStatement pstmt = conn.prepareStatement(buscaId);
-            PreparedStatement pst = conn.prepareStatement(sql)) {
-            ResultSet resultSet = pstmt.executeQuery();
+        String sql = "INSERT INTO PESSOA(NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?)";
+        try (Connection conn = this.connect();          
+            PreparedStatement pstmt = conn.prepareStatement(sql)){   
             
-            while(resultSet.next()){
-                int idOld = resultSet.getInt("ID");
-                int id = idOld+1;               
-                System.out.println(id);
-            
-            pst.setInt(1, id);    
-            pst.setString(2, nome);
-            pst.setString(3, cpf);
-            pst.setString(4, matricula);
-            pst.setString(5, curso);
-            pst.setString(6, psw);
-            pst.setInt(7, funcao);
-            pst.executeUpdate();}
+            pstmt.setString(1, nome);
+            pstmt.setString(2, cpf);
+            pstmt.setString(3, matricula);
+            pstmt.setString(4, curso);
+            pstmt.setString(5, psw);
+            pstmt.setInt(6, funcao);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -194,8 +181,8 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    /*
-    /*public void selectT_Acervo_Editora(int ID, String NOME){
+    
+    public void selectT_Acervo_Editora(int ID, String NOME){
             String sql = "select * from ACERVO WHERE EDITORA = '?'";
             try (Connection conn = this.connect();
                     PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -210,6 +197,8 @@ public class DataBase {
     //select * from ACERVO WHERE EDITORA = 'EDITORA ATICA S/A'
     
     
+    
+    
     public static void insertT_Pessoa() {        
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
             Statement statement = connection.createStatement();
@@ -219,6 +208,24 @@ public class DataBase {
         }
     }
     */    
+    
+    public void sele_UserSenha() {        
+        String buscaNome = "SELECT * FROM PESSOA";
+        try (Connection conn = this.connect();                
+            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+            ResultSet resultSet = pstmt.executeQuery();           
+            //PreparedStatement pst = conn.prepareStatement(buscaSenha));
+            while (resultSet.next()){
+                String mat = resultSet.getString("MATRICULA");
+                String pass = resultSet.getString("PSW");
+                Integer func = resultSet.getInt("FUNCAO");
+                System.out.println(mat+pass+func);
+            }
+            pstmt.executeUpdate();            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
     public static void main(String[] args) {
         DataBase app = new DataBase();
@@ -234,7 +241,8 @@ public class DataBase {
         //app.insertT_Aluno(1,"Marlyson T Xavier", "05967762418",20191022,"TI");
         //app.insertT_Funcao("", 6);
         //app.criaT_Acervo();
-        app.insertT_Pessoa("Andrade Henrique","61235498721","2398732123","ADM","4072133",3);
+        app.sele_UserSenha();
+        //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.insertT_Status("ATRASO", 4);
     }
 }

@@ -28,7 +28,10 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario = new javax.swing.JDesktopPane();
         menuCadUser = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
         menuUser = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -37,10 +40,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         menuLivro = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -61,8 +62,26 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuArquivo.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\folder.png")); // NOI18N
         menuArquivo.setText("Iniciar");
 
-        jMenuItem9.setText("Alugar Livro");
-        menuArquivo.add(jMenuItem9);
+        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\chat-list.png")); // NOI18N
+        jMenu1.setText("Relatórios");
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\chat-list.png")); // NOI18N
+        jMenuItem8.setText("Gerar Relatório");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        menuArquivo.add(jMenu1);
+
+        jMenu2.setText("Eventos");
+
+        jMenuItem10.setText("Adicionar Eventos");
+        jMenu2.add(jMenuItem10);
+
+        menuArquivo.add(jMenu2);
 
         menuSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\door_out.png")); // NOI18N
         menuSair.setText("Logout");
@@ -118,6 +137,15 @@ public class TelaFuncionario extends javax.swing.JFrame {
         });
         menuLivro.add(jMenuItem6);
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\book_addresses.png")); // NOI18N
+        jMenuItem9.setText("Alugar Livro");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        menuLivro.add(jMenuItem9);
+
         jMenuItem7.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\book_open.png")); // NOI18N
         jMenuItem7.setText("Ficha Catalográfica");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -128,23 +156,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuLivro.add(jMenuItem7);
 
         menuCadUser.add(menuLivro);
-
-        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\chat-list.png")); // NOI18N
-        jMenu1.setText("Relatórios");
-
-        jMenuItem8.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\chat-list.png")); // NOI18N
-        jMenuItem8.setText("Gerar Relatório");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem8);
-
-        menuCadUser.add(jMenu1);
-
-        jMenu2.setText("Eventos");
-        menuCadUser.add(jMenu2);
 
         jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\rodri\\Documents\\NetBeansProjects\\MoraisLibrary\\src\\main\\resouces\\icons\\exclamation.png")); // NOI18N
         jMenu4.setText("Sobre");
@@ -249,6 +260,10 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -288,6 +303,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -1,6 +1,7 @@
 package TesteBanco;
 
-import conexoes.ConexaoSQLite;
+import database.DataBase;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,46 +10,33 @@ public class IdBuscaBanco {
     
     public static void main(String[] args) {
 
-        ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
-
-        conexaoSQLite.conectar();
+        
         
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
         
         String sql = "SELECT * "
-                + " FROM tbl_pessoa"
-                + " WHERE id = ?;";
+                + " FROM PESSOA"
+                + " WHERE MATRICULA, PSW = ?,?";
 
-        try{
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
             
-            int idPessoa = 10;
-            
-            preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
-            preparedStatement.setInt(1, idPessoa);
+            preparedStatement.setString(1, "201910021223");
+            preparedStatement.setString(2, "123456");
             
             resultSet = preparedStatement.executeQuery();
             
-            while (resultSet.next()) {
+            while (resultSet.first()) {
                 
                 System.out.println("PESSOA SELECIONADA");
-                System.out.println("ID = " + resultSet.getInt("id"));
-                System.out.println("NOME = " + resultSet.getString("nome"));
-                System.out.println("IDADE = " + resultSet.getInt("idade"));
+                System.out.println("Matricula = " + resultSet.getString("MATRICULA"));
                 
             }
-            
+            DataBase.closeConnection(conn, preparedStatement, resultSet);
+    
         }catch(SQLException e){
             e.printStackTrace();
-        }finally{
-            try{
-                resultSet.close();
-                preparedStatement.close();
-                conexaoSQLite.desconectar();
-            }catch(SQLException ex){
-                ex.printStackTrace();
-            }
-        }
-        
-    }
+        }    
+}
 }

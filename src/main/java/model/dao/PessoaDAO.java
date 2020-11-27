@@ -33,14 +33,3 @@ public class PessoaDAO {
     }
     }
     
-//            pstmt = conn.prepareStatement("INSERT INTO pessoa"
-//                    + "(id,nome,cpf,matricula,curso,psw,funcao"
-//                    + "VALUES(?,?,?,?,?,?,?)");
-//            pstmt.setInt(1, p.getId());
-//            pstmt.setString(2, p.getNome());
-//            pstmt.setString(3, p.getCpf());
-//            pstmt.setString(4, p.getMatricula());
-//            pstmt.setString(5, p.getCurso());
-//            pstmt.setString(6, p.getPsw());
-//            pstmt.setInt(7, p.getFuncao());
-//            pstmt.executeUpdate();

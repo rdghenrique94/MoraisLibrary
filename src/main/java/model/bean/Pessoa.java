@@ -1,10 +1,7 @@
 package model.bean;
 
-
-
 public class Pessoa {
-    
-    
+
     private int id;
     private String nome;
     private String cpf;
@@ -15,22 +12,14 @@ public class Pessoa {
 
     public Pessoa(){}
 
-    public Pessoa(int id, String nome, String cpf, String matricula, String curso, String psw, int funcao) {
-        this.id = id;
+    public Pessoa(String nome, String cpf, String matricula, String curso, String psw, int funcao) {
+        
         this.nome = nome;
         this.cpf = cpf;
         this.matricula = matricula;
         this.curso = curso;
         this.psw = psw;
         this.funcao = funcao;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
