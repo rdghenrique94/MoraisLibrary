@@ -218,7 +218,7 @@ public class DataBase {
     
     public void sele_UserSenha(String matricula, String senha) {        
         String buscaNome = "SELECT * FROM PESSOA";
-        try (Connection conn = this.connect();                
+        try (Connection conn = DataBase.connect();                
             PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
             ResultSet resultSet = pstmt.executeQuery();           
             //PreparedStatement pst = conn.prepareStatement(buscaSenha));
@@ -226,25 +226,34 @@ public class DataBase {
                 String mat = resultSet.getString("MATRICULA");
                 String pass = resultSet.getString("PSW");
                 Integer func = resultSet.getInt("FUNCAO");
-            
-                if(matricula.equals(mat)&&senha.equals(pass)&&func==4){
-                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
-                    TelaFuncionario tf = new TelaFuncionario();
-                    tf.setVisible(true);
-                    
-                }else if(matricula.equals(mat)&&senha.equals(pass)&& func==3 || func==2 || func==1) {
-                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+                String nom = resultSet.getString("NOME");
+                
+                if(matricula.equals(mat)&&senha.equals(pass)&& func==1){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!! "+ nom);
                     TelaAluno ta = new TelaAluno();
                     ta.setVisible(true);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Dados Informados Incorretos!");
-                    
+                }                
+                else if(matricula.equals(mat)&&senha.equals(pass)&& func==2){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    TelaAluno ta = new TelaAluno();
+                    ta.setVisible(true);
                 }
-                //System.out.println(mat+pass+func);
+                else if(matricula.equals(mat)&&senha.equals(pass)&& func==3){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    TelaAluno ta = new TelaAluno();
+                    ta.setVisible(true);
+                }
+                else if(matricula.equals(mat)&&senha.equals(pass)&&func==4){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    TelaFuncionario tf = new TelaFuncionario();
+                    tf.setVisible(true);                    
+                }
+                
             }
-            pstmt.executeUpdate();            
+            pstmt.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
     }
     
