@@ -3,6 +3,8 @@ package viewFuncionario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.bean.Pessoa;
+import model.dao.PessoaDAO;
 
 public class LivroAdd extends javax.swing.JInternalFrame {
 
@@ -11,6 +13,22 @@ public class LivroAdd extends javax.swing.JInternalFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tabelaAddLivro.getModel(); // FAZER ORDENAÇÃO NA TABELA
         tabelaAddLivro.setRowSorter(new TableRowSorter(modelo));
+        readTabela();
+    }
+    
+    public void readTabela(){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaAddLivro.getModel();
+        modelo.setNumRows(0);
+        PessoaDAO pdao = new PessoaDAO();
+        
+        for (Pessoa p: pdao.read()){
+            
+            modelo.addRow(new Object[]{
+                p.getMatricula(),
+                p.getPsw(),
+                p.getFuncao()
+            });
+        }
     }
 
     /**
@@ -30,11 +48,11 @@ public class LivroAdd extends javax.swing.JInternalFrame {
         txtLivro = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         txtEditora = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaAddLivro = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Livros"));
         setClosable(true);
@@ -47,17 +65,17 @@ public class LivroAdd extends javax.swing.JInternalFrame {
 
         jLabel3.setText("EDITORA");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -66,7 +84,7 @@ public class LivroAdd extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "LIVRO", "AUTOR", "EDITORA"
+                "MATRICULA", "SENHA", "FUNÇÃO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -89,10 +107,10 @@ public class LivroAdd extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(tabelaAddLivro);
 
-        jButton3.setText("Atualizar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAtualizarActionPerformed(evt);
             }
         });
 
@@ -115,7 +133,7 @@ public class LivroAdd extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane3)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(356, 356, 356)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -126,9 +144,9 @@ public class LivroAdd extends javax.swing.JInternalFrame {
                             .addGap(464, 818, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGap(64, 64, 64)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(13, 13, 13)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,7 +162,7 @@ public class LivroAdd extends javax.swing.JInternalFrame {
                     .addComponent(txtEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(jButton3)
+                .addComponent(btnAtualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -154,8 +172,8 @@ public class LivroAdd extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addGap(82, 82, 82)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2))
+                        .addComponent(btnCadastrar)
+                        .addComponent(btnExcluir))
                     .addContainerGap(503, Short.MAX_VALUE)))
         );
 
@@ -175,16 +193,15 @@ public class LivroAdd extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
-        
+        DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAddLivro.getModel();         //ADICIONAR ITENS NA TABELA
+        Object[] dados = {txtLivro.getText(), txtAutor.getText(), txtEditora.getText()};
+        dtmLivros.addRow(dados);
+        readTabela();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-//        DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAddLivro.getModel();         //ADICIONAR ITENS NA TABELA
-//        Object[] dados = {txtLivro.getText(), txtAutor.getText(), txtEditora.getText()};
-//        dtmLivros.addRow(dados);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         //        System.out.println("Linha Selecionada"+tabelaLivros.getSelectedRow());    REMOVER LINHA SELECIONADA NA TABELA
 
         if (tabelaAddLivro.getSelectedRow() != -1){
@@ -193,7 +210,7 @@ public class LivroAdd extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Excluir ");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void tabelaAddLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAddLivroMouseClicked
 
@@ -219,7 +236,7 @@ public class LivroAdd extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tabelaAddLivroKeyReleased
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         
         if (tabelaAddLivro.getSelectedRow() != -1){
            tabelaAddLivro.setValueAt(txtLivro.getText(), tabelaAddLivro.getSelectedRow(), 0);
@@ -229,13 +246,13 @@ public class LivroAdd extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Editar ");
             
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

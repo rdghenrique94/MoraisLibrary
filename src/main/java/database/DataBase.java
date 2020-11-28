@@ -1,7 +1,7 @@
 package database;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -10,7 +10,7 @@ import viewFuncionario.TelaFuncionario;
 
 public class DataBase {    
     
-    private String url = "jdbc:sqlite:banco_de_dados/DataBase.db";
+    private final String url = "jdbc:sqlite:banco_de_dados/DataBase.db";
     
     public static Connection connect() {
         String url = "jdbc:sqlite:banco_de_dados/DataBase.db";
@@ -20,7 +20,8 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
         return conn;
-    }public static void closeConnection(Connection conn){
+    }
+    public static void closeConnection(Connection conn){
         if (conn!=null){
             try {
                 conn.close();
@@ -165,8 +166,10 @@ public class DataBase {
             pstmt.setString(5, psw);
             pstmt.setInt(6, funcao);
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
+            closeConnection(conn, pstmt);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
         }
     }
     /*
@@ -210,7 +213,8 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    */    
+    */
+    
     
     public void sele_UserSenha(String matricula, String senha) {        
         String buscaNome = "SELECT * FROM PESSOA";
