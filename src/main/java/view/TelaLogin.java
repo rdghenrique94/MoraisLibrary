@@ -38,22 +38,16 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtMatricula = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         btEntrar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
+        txtMatricula = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Matricula");
 
         jLabel2.setText("Senha");
-
-        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatriculaActionPerformed(evt);
-            }
-        });
 
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -75,6 +69,12 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        try {
+            txtMatricula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,12 +84,12 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addComponent(btEntrar))
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMatricula))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,7 +132,7 @@ public class TelaLogin extends javax.swing.JFrame {
             String mat = txtMatricula.getText();
             String pass = String.valueOf(txtSenha.getPassword());
             db.sele_UserSenha(mat, pass);
-            
+            this.dispose();
             
 //        if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
 //            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
@@ -157,6 +157,7 @@ public class TelaLogin extends javax.swing.JFrame {
             String mat = txtMatricula.getText();
             String pass = String.valueOf(txtSenha.getPassword());
             db.sele_UserSenha(mat, pass);
+            this.dispose();
 //            if(this.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
 //            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
 //            TelaFuncionario tf = new TelaFuncionario();
@@ -170,10 +171,6 @@ public class TelaLogin extends javax.swing.JFrame {
         }
              
     }//GEN-LAST:event_txtSenhaKeyPressed
-
-    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,7 +213,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JFormattedTextField txtMatricula;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
