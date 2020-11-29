@@ -221,7 +221,6 @@ public class DataBase {
         try (Connection conn = DataBase.connect();                
             PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
             ResultSet resultSet = pstmt.executeQuery();           
-            //PreparedStatement pst = conn.prepareStatement(buscaSenha));
             while (resultSet.next()){
                 String mat = resultSet.getString("MATRICULA");
                 String pass = resultSet.getString("PSW");
@@ -248,12 +247,11 @@ public class DataBase {
                     TelaFuncionario tf = new TelaFuncionario();
                     tf.setVisible(true);                    
                 }
-                
             }
             pstmt.executeUpdate();
             //closeConnection(conn, pstmt, resultSet);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
+            //ptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
     }
     
