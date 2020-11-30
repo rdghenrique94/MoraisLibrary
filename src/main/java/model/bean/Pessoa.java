@@ -11,7 +11,18 @@ public class Pessoa {
     private int funcao;
 
     public Pessoa(){}
-
+    
+    public Pessoa(int id, String nome, String cpf, String matricula, String curso, String psw, int funcao) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.matricula = matricula;
+        this.curso = curso;
+        this.psw = psw;
+        this.funcao = funcao;
+    }
+    
+    
     public Pessoa(String nome, String cpf, String matricula, String curso, String psw, int funcao) {
         
         this.nome = nome;
@@ -20,6 +31,14 @@ public class Pessoa {
         this.curso = curso;
         this.psw = psw;
         this.funcao = funcao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

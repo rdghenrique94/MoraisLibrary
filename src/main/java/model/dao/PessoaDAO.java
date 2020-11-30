@@ -21,27 +21,36 @@ import model.bean.Pessoa;
  * @author rodri
  */
 public class PessoaDAO {
+    DataBase app = new DataBase();
     
     public void create(Pessoa p){
         
-        DataBase app = new DataBase();
         app.insertT_Pessoa(p.getNome(), p.getCpf(), p.getMatricula(), p.getCurso(), p.getPsw(), p.getFuncao());
-        //DataBase.closeConnection(conn, pstmt);
+    }
+    public void update(Pessoa p){
+        
+        app.updateT_Pessoa(p.getNome(), p.getCpf(), p.getMatricula(), p.getCurso(), p.getPsw(), p.getId());
+    }
+    public void delete(Pessoa p){
+        
+        app.deleteT_Pessoa(p.getMatricula());
     }
     public List<Pessoa> read(){
-        Connection conn = DataBase.connect();
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        
         
         List<Pessoa> pessoas = new ArrayList<>();
         
-        try {
-            pstmt = conn.prepareStatement("SELECT *FROM PESSOA");
-            rs = pstmt.executeQuery();
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT *FROM PESSOA")){
+            ResultSet rs = pstmt.executeQuery();
             
             while(rs.next()){
                 Pessoa pessoa = new Pessoa();
+                pessoa.setId(rs.getInt("ID"));
+                pessoa.setNome(rs.getString("NOME"));
+                pessoa.setCpf(rs.getString("CPF"));
                 pessoa.setMatricula(rs.getString("MATRICULA"));
+                pessoa.setCurso(rs.getString("CURSO"));
                 pessoa.setPsw(rs.getString("PSW"));
                 pessoa.setFuncao(rs.getInt("FUNCAO"));
                 pessoas.add(pessoa);
@@ -50,13 +59,11 @@ public class PessoaDAO {
             
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-        DataBase.closeConnection(conn, pstmt, rs);
-    }
+        }
         return pessoas;
     }
+    }         
         
-        
-    }
+    
     
     

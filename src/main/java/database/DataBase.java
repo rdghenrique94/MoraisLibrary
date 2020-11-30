@@ -137,13 +137,16 @@ public class DataBase {
     }
     
     
-    public void updateT_Pessoa(String NOME, String CURSO, int ID) {
+    public void updateT_Pessoa(String NOME, String CPF, String MATRICULA, String CURSO, String PSW, int ID) {
         String sql = "UPDATE PESSOA SET NOME = ?," + "CURSO = ?" + "WHERE ID_PESSOA = ?";
         try (Connection conn = DataBase.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, NOME);
-            pstmt.setString(2, CURSO);
-            pstmt.setInt(3, ID);
+            pstmt.setString(2, CPF);
+            pstmt.setString(3, MATRICULA);
+            pstmt.setString(4, CURSO);
+            pstmt.setString(5, PSW);
+            pstmt.setInt(6, ID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
