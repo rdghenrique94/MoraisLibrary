@@ -113,55 +113,52 @@ public class TelaLogin extends javax.swing.JFrame {
         return login.equals(txtMatricula.getText()) && senha.equals(txtSenha.getPassword());
 }
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-            DataBase db = new DataBase();
+           
             String mat = txtMatricula.getText();
             String pass = String.valueOf(txtSenha.getPassword());            
             String buscaNome = "SELECT * FROM PESSOA";
+            
             try (Connection conn = DataBase.connect();                
                 PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-                ResultSet resultSet = pstmt.executeQuery();           
+                ResultSet resultSet = pstmt.executeQuery();
+                
                 while (resultSet.next()){
-                    String matricula = resultSet.getString("MATRICULA");
-                    String password = resultSet.getString("PSW");
+                    String matri = resultSet.getString("MATRICULA");
+                    String passw = resultSet.getString("PSW");
                     Integer func = resultSet.getInt("FUNCAO");
                     String nom = resultSet.getString("NOME");
-                    if(mat.equals(matricula)&&pass.equals(password)&& func==1){
-                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    if(mat.equals(matri)&&pass.equals(passw)&& func==1){
+                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!\n"+ nom);
                         TelaAluno ta = new TelaAluno();
                         ta.setVisible(true);
                         dispose();
                         break;
                     }                
-                    else if(mat.equals(matricula)&&pass.equals(password)&& func==2){
-                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    else if(mat.equals(matri)&&pass.equals(passw)&& func==2){
+                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!\n"+ nom);
                         TelaAluno ta = new TelaAluno();
                         ta.setVisible(true);
                         dispose();
                         break;
                     }
-                    else if(mat.equals(matricula)&&pass.equals(password)&& func==3){
-                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    else if(mat.equals(matri)&&pass.equals(passw)&& func==3){
+                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!\n"+ nom);
                         TelaAluno ta = new TelaAluno();
                         ta.setVisible(true);
                         dispose();
                         break;
                     }
-                    else if(mat.equals(matricula)&&pass.equals(password)&&func==4){
-                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
+                    else if(mat.equals(matri)&&pass.equals(passw)&&func==4){
+                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!\n"+ nom);
                         TelaFuncionario tf = new TelaFuncionario();
                         tf.setVisible(true);
                         dispose();
                         break;
                     }
-                    else if(mat != (matricula) && pass != (password)){
-                        JOptionPane.showMessageDialog(null,"Login ou senha Incorreto!!!");
-                        break;
-                    }
                 }
                 pstmt.executeUpdate();
-                //closeConnection(conn, pstmt, resultSet);
             }catch (SQLException e) {
-                
+                //System.out.println(e.getMessage());
                 //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
             }        
     }//GEN-LAST:event_btEntrarActionPerformed
@@ -173,18 +170,21 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER ){
-            DataBase db = new DataBase();
+            
             String mat = txtMatricula.getText();
             String pass = String.valueOf(txtSenha.getPassword());            
             String buscaNome = "SELECT * FROM PESSOA";
+            
             try (Connection conn = DataBase.connect();                
                 PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-                ResultSet resultSet = pstmt.executeQuery();           
+                ResultSet resultSet = pstmt.executeQuery();
+                
                 while (resultSet.next()){
                     String matricula = resultSet.getString("MATRICULA");
                     String password = resultSet.getString("PSW");
                     Integer func = resultSet.getInt("FUNCAO");
                     String nom = resultSet.getString("NOME");
+                    
                     if(mat.equals(matricula)&&pass.equals(password)&& func==1){
                         JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  "+ nom);
                         TelaAluno ta = new TelaAluno();
@@ -213,15 +213,10 @@ public class TelaLogin extends javax.swing.JFrame {
                         dispose();
                         break;
                     }
-                    else if(mat != (matricula) && pass != (password)){
-                        JOptionPane.showMessageDialog(null,"Login ou senha Incorreto!!!");
-                        break;
-                    }
                 }
                 pstmt.executeUpdate();
-                //closeConnection(conn, pstmt, resultSet);
-            }catch (SQLException e) {
                 
+            }catch (SQLException e) {
                 //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
             }
         }

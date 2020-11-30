@@ -47,7 +47,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Area do Funcionario");
-        setPreferredSize(new java.awt.Dimension(960, 600));
+
+        desktopFuncionario.setPreferredSize(new java.awt.Dimension(980, 600));
 
         javax.swing.GroupLayout desktopFuncionarioLayout = new javax.swing.GroupLayout(desktopFuncionario);
         desktopFuncionario.setLayout(desktopFuncionarioLayout);
@@ -163,11 +164,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFuncionario)
+            .addComponent(desktopFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFuncionario)
+            .addComponent(desktopFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
         );
 
         pack();
