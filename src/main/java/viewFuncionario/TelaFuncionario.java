@@ -37,7 +37,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         menuLivro = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -103,18 +102,20 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuUser.add(jMenuItem2);
 
         jMenuItem3.setText("Editar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menuUser.add(jMenuItem3);
 
         jMenuItem4.setText("Excluir");
-        menuUser.add(jMenuItem4);
-
-        jMenuItem5.setText("Pesquisar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItem4ActionPerformed(evt);
             }
         });
-        menuUser.add(jMenuItem5);
+        menuUser.add(jMenuItem4);
 
         menuCadUser.add(menuUser);
 
@@ -175,12 +176,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        TelaCadastroUsusario telaCadUser = new TelaCadastroUsusario();
+        TelaCadastroUser telaCadUser = new TelaCadastroUser();
         desktopFuncionario.add(telaCadUser);
         telaCadUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -211,13 +208,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 + "Agradeço a Deus e a meus colegas por todo o trabalho desempenhado e todo o tempo gasto. ");
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        LivroAdd tabelaLiv = new LivroAdd();
+        TelaUpdateUser tabelaLiv = new TelaUpdateUser();
         desktopFuncionario.add(tabelaLiv);
         tabelaLiv.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
         FichaCatalografica fch = new FichaCatalografica();
@@ -225,7 +220,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         fch.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 
         Document document = new Document();                                     //GERAR PDF 
@@ -243,14 +237,20 @@ public class TelaFuncionario extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Error: "+ex);
         }
-        
-
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        TelaDeleteUser tdu = new TelaDeleteUser();
+        desktopFuncionario.add(tdu);
+        tdu.setVisible(true);
 
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        TelaUpdateUser tuu = new TelaUpdateUser();
+        desktopFuncionario.add(tuu);
+        tuu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -294,7 +294,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
