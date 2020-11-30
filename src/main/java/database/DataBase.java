@@ -135,8 +135,6 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    
-    
     public void updateT_Pessoa(String NOME, String CPF, String MATRICULA, String CURSO, String PSW, int ID) {
         String sql = "UPDATE PESSOA SET NOME = ?," + "CURSO = ?" + "WHERE ID_PESSOA = ?";
         try (Connection conn = DataBase.connect();
@@ -152,8 +150,6 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    
-    
     public void deleteT_Pessoa(String MATRICULA) {
         String sql = "DELETE FROM PESSOA WHERE MATRICULA = ?";
         try (Connection conn = DataBase.connect();

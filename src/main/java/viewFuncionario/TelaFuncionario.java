@@ -208,13 +208,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 + "Agradeço a Deus e a meus colegas por todo o trabalho desempenhado e todo o tempo gasto. ");
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         TelaUpdateUser tabelaLiv = new TelaUpdateUser();
         desktopFuncionario.add(tabelaLiv);
         tabelaLiv.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
         FichaCatalografica fch = new FichaCatalografica();
@@ -222,7 +220,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         fch.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 
         Document document = new Document();                                     //GERAR PDF 
@@ -240,24 +237,16 @@ public class TelaFuncionario extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Error: "+ex);
         }
-        
-
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         TelaUpdateUser tuu = new TelaUpdateUser();
         desktopFuncionario.add(tuu);
         tuu.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
