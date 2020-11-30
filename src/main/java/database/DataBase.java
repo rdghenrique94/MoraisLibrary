@@ -208,7 +208,7 @@ public class DataBase {
         }
     }
     
-    /*public void selectT_Acervo_Editora(){
+    public void selectT_Acervo(){
             //String sql = "select * from ACERVO WHERE EDITORA = '?'";
             String buscaNome = "SELECT * FROM ACERVO";
             try (Connection conn = DataBase.connect();                
@@ -221,9 +221,14 @@ public class DataBase {
                 Integer estante  = rest.getInt("ESTANTE");
                 Integer prateleira = rest.getInt("PRATELEIRA");
                 Integer status = rest.getInt("STATUS");
-                
-        
-      */
+                System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
+            }
+            pstmt.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());           
+        }
+    }
     
     public static void insertT_Pessoa() {        
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
@@ -290,13 +295,16 @@ public class DataBase {
         //app.sele_UserSenha("20191022006","32072133");
         //app.insertT_Status("ATRASO", 4);
         //app.criaT_Regras();
+        
         //app.criaT_Pessoa();
         //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.updateT_Pessoa("Marlyson Xavier", "Sistemas Da Informação",1);
         //app.deleteT_Pessoa("32154787851");
+        
         //app.criaT_Acervo();
         //app.updateT_Acervo(1, "ÁPIS LÍNGUA PORTUGUESA - 1º ANO", "EDITORA ATICA S/A", 2019, 1, 1);
         //app.insertT_Acervo("Marlyson Xavier", "Jampa.Com", 2020, 1, 1, 1);
         //app.deleteT_Acervo(30001,2020);
+        //app.selectT_Acervo();
     }
 }
