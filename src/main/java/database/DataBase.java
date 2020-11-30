@@ -54,44 +54,25 @@ public class DataBase {
     public void criaT_Pessoa() {        
         try (Connection conn = DriverManager.getConnection(url)) {
             Statement statement = conn.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS PESSOA(ID INTEGER not null PRIMARY KEY AUTOINCREMENT, NOME VARCHAR not null, CPF INTEGER (11,11)not null UNIQUE, MATRICULA STRING not null, CURSO STRING, PSW INTEGER not null,FUNCAO INTEGER not null)");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    /*
-    public void criaT_Funcao() {        
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
-            Statement statement = conn.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS FUNCAO(FUNCAO STRING not null UNIQUE, ID INTEGER not null PRIMARY KEY)");
+            statement.execute("CREATE TABLE IF NOT EXISTS PESSOA(ID_PESSOA INTEGER not null PRIMARY KEY AUTOINCREMENT, NOME VARCHAR not null, CPF INTEGER (11,11)not null UNIQUE, MATRICULA STRING not null, CURSO STRING, PSW INTEGER not null,FUNCAO INTEGER not null)");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
     
-    public void criaT_Aluno() {        
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
-            Statement statement = conn.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS ALUNO( ID INTEGER not null, NOME VARCHAR not null, CPF INTEGER not null PRIMARY KEY, MATRICULA STRING not null UNIQUE, CURSO STRING not null)");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    */
     public void criaT_Acervo(){
         try (Connection connection = DriverManager.getConnection(url)) {
             Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS ACERVO(TITULO STRING not null UNIQUE,EDITORA STRING not null,ANO INTEGER not null,ID INT not null PRIMARY KEY AUTOINCREMENT, ESTANTE STRING not null, PRATELEIRA STANTE not null, STATUS INTEGER not null)");
+            statement.execute("CREATE TABLE IF NOT EXISTS ACERVO(ID_ACERVO INTEGER not null PRIMARY KEY AUTOINCREMENT,TITULO STRING not null,EDITORA STRING not null,ANO INTEGER not null, ESTANTE INTEGER not null, PRATELEIRA INTEGER not null, STATUS INTEGER not null)");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-    
+    }    
     
     public void criaT_Regras(){
         try(Connection connection = DriverManager.getConnection(url)){
             Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS REGRAS(ID INTEGER not null PRIMARY KEY AUTOINCREMENT, VALOR_ALUGUEL INTEGER not null, VALOR_MULTA INTEGER not null, NOME STRING not null, MATRICULA STRING not null, STATUS INTEGER not null, FUNCAO INTEGER not null, DIAS_ALUGADO INTEGER not null )");
+            statement.execute("CREATE TABLE IF NOT EXISTS REGRAS(ID_REGRAS INTEGER not null PRIMARY KEY AUTOINCREMENT, VALOR_ALUGUEL INTEGER not null, VALOR_MULTA INTEGER not null, NOME STRING not null, MATRICULA STRING not null, STATUS INTEGER not null, FUNCAO INTEGER not null, DIAS_ALUGADO INTEGER not null, DATA_HORA DATETIME not null)");
         }catch(SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -100,43 +81,69 @@ public class DataBase {
     public void criaT_Status(){
         try (Connection connection = DriverManager.getConnection(url)){
             Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS STATUS(STATUS STRING not null, ID INTEGER not null PRIMARY KEY AUTOINCREMENT)");
+            statement.execute("CREATE TABLE IF NOT EXISTS STATUS(STATUS STRING not null, ID_STATUS INTEGER not null PRIMARY KEY AUTOINCREMENT)");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }        
     }
     
-    /*
-    public void criaT_Funcionarios(){
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
-            Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS FUNCIONARIO( ID INTEGER not null, NOME STRING not null, CPF STRING not null, SENHA INT not null, SETOR STRING not null, TIPO INT not null)");
+    public void insertT_Acervo(String titulo, String editora, int ano,int estante,int prateleira, int status) {
+        String sql = "INSERT INTO ACERVO(TITULO, EDITORA, ANO, ESTANTE, PRATELEIRA, STATUS) VALUES (?,?,?,?,?,1)";
+        try (Connection conn = DataBase.connect();          
+            PreparedStatement pstmt = conn.prepareStatement(sql)){            
+            pstmt.setString(1, titulo);
+            pstmt.setString(2, editora);
+            pstmt.setInt(3, ano);
+            pstmt.setInt(4, estante);
+            pstmt.setInt(5, prateleira);
+            //pstmt.setInt(6, status);
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
+            closeConnection(conn, pstmt);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
+        }
+    }
+    
+    public void updateT_Acervo(int ID, String TITULO, String EDITORA, int ANO, int ESTANTE, int PRATELEIRA) {
+        String sql = "UPDATE ACERVO SET TITULO = ?," + "EDITORA = ?," + "ANO = ?," + "ESTANTE = ?," + "PRATELEIRA = ?," + "STATUS = 1 " + "WHERE ID_ACERVO = ?";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement altA = conn.prepareStatement(sql)) {
+            altA.setString(1, TITULO);
+            altA.setString(2, EDITORA);
+            altA.setInt(3, ANO);
+            altA.setInt(4, ESTANTE);
+            altA.setInt(5, PRATELEIRA);
+            altA.setInt(6, ID);
+            altA.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+    }
+        
+    public void deleteT_Acervo(int ID_ACERVO,int ANO) {
+        String sql = "DELETE FROM ACERVO WHERE ID_ACERVO = ? and ANO = ?";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, ID_ACERVO);
+            pstmt.setInt(2, ANO);
+            //pstmt.setInt(3, ID);
+            //pstmt.setInt(4, MATRICULA);
+            //pstmt.setString(2, CURSO);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
     
-    public void criaT_Setor(){
-        try(Connection connection = DriverManager.getConnection(this.url)){
-        Statement statemant = connection.createStatement();
-        statemant.execute("CREATE TABLE IF NOT EXISTS SETORE(ID INTEGER PRIMARY KEY not null, SETOR STRING not null)");
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    
-    */
     
     public void updateT_Pessoa(String NOME, String CURSO, int ID) {
-        String sql = "UPDATE PESSOA SET NOME = ?," + "CURSO = ?" + "WHERE ID = ?";
+        String sql = "UPDATE PESSOA SET NOME = ?," + "CURSO = ?" + "WHERE ID_PESSOA = ?";
         try (Connection conn = DataBase.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, NOME);
-            //pstmt.setFloat(2, CPF);
-            pstmt.setInt(3, ID);
-            //pstmt.setInt(4, MATRICULA);
             pstmt.setString(2, CURSO);
+            pstmt.setInt(3, ID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -147,7 +154,7 @@ public class DataBase {
     public void deleteT_Pessoa(String MATRICULA) {
         String sql = "DELETE FROM PESSOA WHERE MATRICULA = ?";
         try (Connection conn = DataBase.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, MATRICULA);
             //pstmt.setFloat(2, CPF);
             //pstmt.setInt(3, ID);
@@ -160,7 +167,7 @@ public class DataBase {
     }
     
     public void insertT_Funcao(String funcao, int id) {
-        String sql = "INSERT INTO FUNCAO(FUNCAO, ID) VALUES (?,?)";
+        String sql = "INSERT INTO FUNCAO(FUNCAO, ID_FUNCAO) VALUES (?,?)";
         try (Connection conn = DataBase.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, funcao);
@@ -172,7 +179,7 @@ public class DataBase {
     }
     
     public void insertT_Status(String status,int id){
-        String sql = "INSERT INTO STATUS(STATUS, ID) VALUES(?,?)";
+        String sql = "INSERT INTO STATUS(STATUS, ID_STATUS) VALUES(?,?)";
         try (Connection conn = DataBase.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, status);
@@ -200,38 +207,23 @@ public class DataBase {
             JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
         }
     }
-    /*
-    public void insertT_Aluno(int ID, String NOME, String CPF, float MATRICULA, String CURSO ) {
-        String sql = "INSERT INTO ALUNO(ID, NOME, CPF, MATRICULA, CURSO) VALUES (?,?,?,?,?)";
-        try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, ID);
-            pstmt.setString(2, NOME);
-            pstmt.setString(3, CPF);
-            pstmt.setFloat(4, MATRICULA);
-            pstmt.setString(5, CURSO);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     
-    public void selectT_Acervo_Editora(int ID, String NOME){
-            String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            try (Connection conn = this.connect();
-                    PreparedStatement pstmt = conn.prepareStatement(sql)){
-                pstmt.getInteger(1, ID);
-                pstmt.getSrintg(2, NOME);
-                //Integer id = resultSet.getInt("ID");
-                //String nome = resultSet.getString("NOME");
-                System.out.println( id + " - " + nome);
-            }
-        }
-            
-    //select * from ACERVO WHERE EDITORA = 'EDITORA ATICA S/A'
-    
-    
-    
+    /*public void selectT_Acervo_Editora(){
+            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
+            String buscaNome = "SELECT * FROM ACERVO";
+            try (Connection conn = DataBase.connect();                
+            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+            ResultSet rest = pstmt.executeQuery();           
+            while (rest.next()){
+                String titulo = rest.getString("TITULO");
+                String editora = rest.getString("EDITORA");
+                Integer ano = rest.getInt("ANO");
+                Integer estante  = rest.getInt("ESTANTE");
+                Integer prateleira = rest.getInt("PRATELEIRA");
+                Integer status = rest.getInt("STATUS");
+                
+        
+      */
     
     public static void insertT_Pessoa() {        
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
@@ -241,9 +233,7 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    */
-    
-    
+
     public void sele_UserSenha(String matricula, String senha) {        
         String buscaNome = "SELECT * FROM PESSOA";
         try (Connection conn = DataBase.connect();                
@@ -290,7 +280,6 @@ public class DataBase {
         //app.criaT_Aluno();
         //app.criaT_Acervo();
         //app.criaT_Funcionarios();
-        //app.criaT_Pessoa();
         //app.criaT_Funcao();
         //app.criaT_Setor();
         //app.criaT_Setores();
@@ -298,12 +287,16 @@ public class DataBase {
         //app.updateT_Aluno(1, "Marlyson", 123123123, 9999,"ADM");
         //app.insertT_Aluno(1,"Marlyson T Xavier", "05967762418",20191022,"TI");
         //app.insertT_Funcao("", 6);
-        //app.criaT_Acervo();
         //app.sele_UserSenha("20191022006","32072133");
-        //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.insertT_Status("ATRASO", 4);
         //app.criaT_Regras();
+        //app.criaT_Pessoa();
+        //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.updateT_Pessoa("Marlyson Xavier", "Sistemas Da Informação",1);
-        app.deleteT_Pessoa("32154787851");
+        //app.deleteT_Pessoa("32154787851");
+        //app.criaT_Acervo();
+        //app.updateT_Acervo(1, "ÁPIS LÍNGUA PORTUGUESA - 1º ANO", "EDITORA ATICA S/A", 2019, 1, 1);
+        //app.insertT_Acervo("Marlyson Xavier", "Jampa.Com", 2020, 1, 1, 1);
+        //app.deleteT_Acervo(30001,2020);
     }
 }
