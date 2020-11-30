@@ -21,7 +21,6 @@ public class TelaDeleteUser extends javax.swing.JInternalFrame {
         txtMatricula.setText("");
 
     }
-    
     public void readTabela(){
         DefaultTableModel modelo = (DefaultTableModel) tableDeleteUser.getModel();
         modelo.setNumRows(0);
@@ -40,7 +39,6 @@ public class TelaDeleteUser extends javax.swing.JInternalFrame {
             });
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
