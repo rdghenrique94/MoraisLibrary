@@ -9,9 +9,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.bean.Pessoa;
-import model.dao.PessoaDAO;
 import view.TelaLogin;
 
 
@@ -28,6 +28,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario = new javax.swing.JDesktopPane();
         menuCadUser = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
@@ -39,9 +41,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -62,6 +61,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
         );
 
         menuArquivo.setText("Iniciar");
+
+        jMenu1.setText("Relatórios");
+
+        jMenuItem8.setText("Gerar Relatório");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        menuArquivo.add(jMenu1);
 
         jMenu2.setText("Eventos");
 
@@ -136,26 +147,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         menuCadUser.add(menuLivro);
 
-        jMenu1.setText("Relatórios");
-
-        jMenuItem12.setText("Relatorios de Usuarios");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem12);
-
-        jMenuItem13.setText("Relatorios de Livros");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem13);
-
-        menuCadUser.add(jMenu1);
-
         jMenu4.setText("Sobre");
 
         jMenuItem1.setText("Informações");
@@ -223,6 +214,24 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario.add(fch);
         fch.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+
+        Document document = new Document();                                     //GERAR PDF 
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Relatório.pdf"));
+            document.open();
+            document.add(new Paragraph("Teste"));
+        } catch (FileNotFoundException | DocumentException ex) {
+            JOptionPane.showMessageDialog(null, "Error: "+ex);
+        }finally{
+            document.close();
+        }
+        try {
+            Desktop.getDesktop().open(new File("Relatório.pdf"));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error: "+ex);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
     }//GEN-LAST:event_jMenuItem9ActionPerformed
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -237,20 +246,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario.add(tuu);
         tuu.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        GerarRelatorioAcervo gra = new GerarRelatorioAcervo();
-        desktopFuncionario.add(gra);
-        gra.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        GerarRelatorioUser gru = new GerarRelatorioUser();
-        desktopFuncionario.add(gru);
-        gru.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -291,13 +286,12 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuCadUser;

@@ -3,9 +3,7 @@ package viewFuncionario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.bean.Acervo;
 import model.bean.Pessoa;
-import model.dao.AcervoDAO;
 import model.dao.PessoaDAO;
 
 public class IncluirAcervo extends javax.swing.JInternalFrame {
@@ -18,31 +16,18 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         //readTabela();
     }
     
-    public void cleanFields(){
-        txtTitulo.setText("");
-        txtEditora.setText("");
-        txtAno.setText("");
-        txtStatus.setText("");
-        txtEstante.setText("");
-        txtPrateleira.setText("");
-    }
-    
     public void readTabela(){
         DefaultTableModel modelo = (DefaultTableModel) tabelaAcervo.getModel();
         modelo.setNumRows(0);
-        AcervoDAO adao = new AcervoDAO();
+        PessoaDAO pdao = new PessoaDAO();
         
-        for (Acervo a: adao.read()){
+        for (Pessoa p: pdao.read()){
             
             modelo.addRow(new Object[]{
-                a.getId(),
-                a.getTitulo(),
-                a.getEditora(),
-                a.getAno(),
-                a.getEstante(),
-                a.getPrateleira(),
-                a.getStatus()
                 
+                p.getMatricula(),
+                p.getPsw(),
+                p.getFuncao()
             });
         }
     }
@@ -79,9 +64,8 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        btnListAllBooks = new javax.swing.JButton();
-        txtBusca = new javax.swing.JTextField();
-        btnBusca = new javax.swing.JButton();
+        txtTitulo1 = new javax.swing.JTextField();
+        btnExcluir1 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Livros"));
         setClosable(true);
@@ -106,11 +90,11 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "TITULO", "EDITORA", "ANO", "ESTANTE", "PRATELEITA", "STATUS"
+                "TITULO", "EDITORA", "ANO", "STATUS", "ESTANTE", "PRATELEITA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -271,13 +255,6 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Campo de Pesquisa");
 
-        btnListAllBooks.setText("Listar Todos os Livros");
-        btnListAllBooks.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListAllBooksActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelPesquisaLayout = new javax.swing.GroupLayout(jPanelPesquisa);
         jPanelPesquisa.setLayout(jPanelPesquisaLayout);
         jPanelPesquisaLayout.setHorizontalGroup(
@@ -285,20 +262,17 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
             .addGroup(jPanelPesquisaLayout.createSequentialGroup()
                 .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPesquisaLayout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanelPesquisaLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnListAllBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelPesquisaLayout.createSequentialGroup()
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelPesquisaLayout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(jLabel8)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanelPesquisaLayout.setVerticalGroup(
@@ -310,23 +284,21 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
                     .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnListAllBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jLabel8))
         );
 
-        txtBusca.setMaximumSize(new java.awt.Dimension(30, 100));
-        txtBusca.setMinimumSize(new java.awt.Dimension(30, 100));
-        txtBusca.setPreferredSize(new java.awt.Dimension(550, 700));
+        txtTitulo1.setMaximumSize(new java.awt.Dimension(30, 100));
+        txtTitulo1.setMinimumSize(new java.awt.Dimension(30, 100));
+        txtTitulo1.setPreferredSize(new java.awt.Dimension(550, 700));
 
-        btnBusca.setText("Pesquisar");
-        btnBusca.setMaximumSize(new java.awt.Dimension(140, 25));
-        btnBusca.setMinimumSize(new java.awt.Dimension(140, 25));
-        btnBusca.setPreferredSize(new java.awt.Dimension(140, 25));
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir1.setText("Pesquisar");
+        btnExcluir1.setMaximumSize(new java.awt.Dimension(140, 25));
+        btnExcluir1.setMinimumSize(new java.awt.Dimension(140, 25));
+        btnExcluir1.setPreferredSize(new java.awt.Dimension(140, 25));
+        btnExcluir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
+                btnExcluir1ActionPerformed(evt);
             }
         });
 
@@ -345,9 +317,9 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                .addComponent(txtTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,9 +334,9 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
                 .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(txtTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -388,46 +360,29 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Acervo ac = new Acervo();
-        AcervoDAO dao = new AcervoDAO();
-        
-        ac.setTitulo(txtTitulo.getText());
-        ac.setAno(Integer.parseInt(txtAno.getText()));
-        ac.setEstante(Integer.parseInt(txtEstante.getText()));
-        ac.setPrateleira(Integer.parseInt(txtPrateleira.getText()));
-        ac.setStatus(Integer.parseInt(txtStatus.getText()));
-        ac.setEditora(txtEditora.getText());
-        
-        dao.create(ac);
+
+        DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAcervo.getModel();         //ADICIONAR ITENS NA TABELA
+        Object[] dados = {txtTitulo.getText(), txtEditora.getText(), txtEditora.getText()};
+        dtmLivros.addRow(dados);
+        readTabela();
     }//GEN-LAST:event_btnCadastrarActionPerformed
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-            Acervo ac = new Acervo();
-            AcervoDAO dao = new AcervoDAO();
+        //        System.out.println("Linha Selecionada"+tabelaLivros.getSelectedRow());    REMOVER LINHA SELECIONADA NA TABELA
+
         if (tabelaAcervo.getSelectedRow() != -1){
-            ac.setId((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(),0));
-            ac.setAno((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 3));
-            dao.delete(ac);
-            readTabela();
-            //cleanFields();
+        DefaultTableModel dtmLivros = (DefaultTableModel)tabelaAcervo.getModel();
+        dtmLivros.removeRow(tabelaAcervo.getSelectedRow());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Excluir ");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-            Acervo ac = new Acervo();
-            AcervoDAO dao = new AcervoDAO();
+        
         if (tabelaAcervo.getSelectedRow() != -1){
-            ac.setTitulo(txtTitulo.getText());
-            ac.setEditora(txtEditora.getText());
-            ac.setAno(Integer.parseInt(txtAno.getText()));
-            ac.setStatus(Integer.parseInt(txtStatus.getText()));
-            ac.setEstante(Integer.parseInt(txtEstante.getText()));
-            ac.setPrateleira(Integer.parseInt(txtPrateleira.getText()));
-            ac.setId((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(),0));
-            dao.update(ac);
-            cleanFields();
-            
+           tabelaAcervo.setValueAt(txtTitulo.getText(), tabelaAcervo.getSelectedRow(), 0);
+           tabelaAcervo.setValueAt(txtEditora.getText(), tabelaAcervo.getSelectedRow(), 1);
+           tabelaAcervo.setValueAt(txtEditora.getText(), tabelaAcervo.getSelectedRow(), 2);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Editar ");
             
@@ -436,12 +391,9 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
 
     private void tabelaAcervoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaAcervoKeyReleased
         if (tabelaAcervo.getSelectedRow() != -1){                                        //EDITAR ITENS DA TABELA
-            txtTitulo.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 1).toString());
+            txtTitulo.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 0).toString());
+            txtEditora.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 1).toString());
             txtEditora.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 2).toString());
-            txtAno.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 3).toString());
-            txtEstante.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 4).toString());
-            txtPrateleira.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 5).toString());
-            txtStatus.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 6).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Editar ");
         }
@@ -451,36 +403,25 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
     private void tabelaAcervoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAcervoMouseClicked
 
         if (tabelaAcervo.getSelectedRow() != -1){
-            txtTitulo.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 1).toString());
+            txtTitulo.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 0).toString());
+            txtEditora.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 1).toString());
             txtEditora.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 2).toString());
-            txtAno.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 3).toString());
-            txtEstante.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 4).toString());
-            txtPrateleira.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 5).toString());
-            txtStatus.setText(tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(), 6).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Excluir ");
         }
     }//GEN-LAST:event_tabelaAcervoMouseClicked
 
-    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-//        AcervoDAO dao = new AcervoDAO();
-//        String busca = txtBusca.getText();
-//        if (){
-//        p.setId((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(),0));
-    }//GEN-LAST:event_btnBuscaActionPerformed
-
-    private void btnListAllBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAllBooksActionPerformed
-        readTabela();
-    }//GEN-LAST:event_btnListAllBooksActionPerformed
+    private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcluir1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
-    private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExcluir1;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnListAllBooks;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -495,11 +436,11 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabelaAcervo;
     private javax.swing.JTextField txtAno;
-    private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtEditora;
     private javax.swing.JTextField txtEstante;
     private javax.swing.JTextField txtPrateleira;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTitulo;
+    private javax.swing.JTextField txtTitulo1;
     // End of variables declaration//GEN-END:variables
 }

@@ -98,7 +98,7 @@ public class DataBase {
             pstmt.setInt(5, prateleira);
             //pstmt.setInt(6, status);
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Exito ao Cadastrado!");
+            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
             closeConnection(conn, pstmt);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
@@ -116,10 +116,8 @@ public class DataBase {
             altA.setInt(5, PRATELEIRA);
             altA.setInt(6, ID);
             altA.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Informações do Livro Selecionado Atualizadas!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao Atualizar Informações do Livro Selecionado!");
         }    
     }
         
@@ -133,10 +131,8 @@ public class DataBase {
             //pstmt.setInt(4, MATRICULA);
             //pstmt.setString(2, CURSO);
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Exito ao Remover o Livro Selecionado!!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao Remover o Livro Selecionado!");
         }
     }
     public void updateT_Pessoa(String NOME, String CPF, String MATRICULA, String CURSO, String PSW, int ID) {
@@ -217,36 +213,15 @@ public class DataBase {
             String buscaNome = "SELECT * FROM ACERVO";
             try (Connection conn = DataBase.connect();                
             PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet rs = pstmt.executeQuery();           
-            while (rs.next()){
-                String titulo = rs.getString("TITULO");
-                String editora = rs.getString("EDITORA");
-                Integer ano = rs.getInt("ANO");
-                Integer estante  = rs.getInt("ESTANTE");
-                Integer prateleira = rs.getInt("PRATELEIRA");
-                Integer status = rs.getInt("STATUS");
+            ResultSet rest = pstmt.executeQuery();           
+            while (rest.next()){
+                String titulo = rest.getString("TITULO");
+                String editora = rest.getString("EDITORA");
+                Integer ano = rest.getInt("ANO");
+                Integer estante  = rest.getInt("ESTANTE");
+                Integer prateleira = rest.getInt("PRATELEIRA");
+                Integer status = rest.getInt("STATUS");
                 System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
-            }
-            pstmt.executeUpdate();
-            //closeConnection(conn, pstmt, resultSet);
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());           
-        }
-    }
-    public void selectT_Pessoa(){
-            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            String buscaNome = "SELECT * FROM PESSOA";
-            try (Connection conn = DataBase.connect();                
-            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet rs = pstmt.executeQuery();           
-            while (rs.next()){
-                String nome = rs.getString("NOME");
-                String cpf = rs.getString("CPF");
-                Integer matricula = rs.getInt("MATRICULA");
-                Integer curso  = rs.getInt("CURSO");
-                Integer senha = rs.getInt("PSW");
-                Integer funcao = rs.getInt("FUNCAO");
-                System.out.println(nome+ "|" + matricula + "|" + matricula + "|" + curso + "|" + senha + "|" + funcao);
             }
             pstmt.executeUpdate();
             //closeConnection(conn, pstmt, resultSet);
@@ -325,7 +300,6 @@ public class DataBase {
         //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.updateT_Pessoa("Marlyson Xavier", "Sistemas Da Informação",1);
         //app.deleteT_Pessoa("32154787851");
-        //app.selectT_Pessoa();
         
         //app.criaT_Acervo();
         //app.updateT_Acervo(1, "ÁPIS LÍNGUA PORTUGUESA - 1º ANO", "EDITORA ATICA S/A", 2019, 1, 1);

@@ -185,6 +185,7 @@ public class TelaDeleteUser extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        //        System.out.println("Linha Selecionada"+tabelaLivros.getSelectedRow());    REMOVER LINHA SELECIONADA NA TABELA
             Pessoa p = new Pessoa();
             PessoaDAO dao = new PessoaDAO();
         if (tableDeleteUser.getSelectedRow() != -1){
@@ -204,7 +205,7 @@ public class TelaDeleteUser extends javax.swing.JInternalFrame {
             txtCpf.setText(tableDeleteUser.getValueAt(tableDeleteUser.getSelectedRow(), 2).toString());
             txtMatricula.setText(tableDeleteUser.getValueAt(tableDeleteUser.getSelectedRow(), 3).toString());
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma Pessoa para Excluir ");
+            JOptionPane.showMessageDialog(null, "Selecione Um Livro para Excluir ");
         }
 
     }//GEN-LAST:event_tableDeleteUserMouseClicked
