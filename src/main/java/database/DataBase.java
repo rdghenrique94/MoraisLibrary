@@ -119,7 +119,7 @@ public class DataBase {
             pstmt.setInt(5, prateleira);
             //pstmt.setInt(6, status);
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
+            JOptionPane.showMessageDialog(null, "Exito ao Cadastrado!");
             closeConnection(conn, pstmt);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
@@ -137,8 +137,10 @@ public class DataBase {
             altA.setInt(5, PRATELEIRA);
             altA.setInt(6, ID);
             altA.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Informações do Livro Selecionado Atualizadas!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error ao Atualizar Informações do Livro Selecionado!");
         }    
     }
         
@@ -152,8 +154,10 @@ public class DataBase {
             //pstmt.setInt(4, MATRICULA);
             //pstmt.setString(2, CURSO);
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Exito ao Remover o Livro Selecionado!!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error ao Remover o Livro Selecionado!");
         }
     }
     public void insertT_Funcao(String funcao, int id) {
@@ -247,50 +251,6 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-<<<<<<< Updated upstream
-    
-    public void insertT_Pessoa(String nome, String cpf,String matricula, String curso, String psw, int funcao) {
-        String sql = "INSERT INTO PESSOA(NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?)";
-        try (Connection conn = DataBase.connect();          
-            PreparedStatement pstmt = conn.prepareStatement(sql)){            
-            pstmt.setString(1, nome);
-            pstmt.setString(2, cpf);
-            pstmt.setString(3, matricula);
-            pstmt.setString(4, curso);
-            pstmt.setString(5, psw);
-            pstmt.setInt(6, funcao);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
-            closeConnection(conn, pstmt);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
-        }
-    }
-    
-    public void selectT_Acervo(){
-            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            String buscaNome = "SELECT * FROM ACERVO";
-            try (Connection conn = DataBase.connect();                
-            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet rest = pstmt.executeQuery();           
-            while (rest.next()){
-                String titulo = rest.getString("TITULO");
-                String editora = rest.getString("EDITORA");
-                Integer ano = rest.getInt("ANO");
-                Integer estante  = rest.getInt("ESTANTE");
-                Integer prateleira = rest.getInt("PRATELEIRA");
-                Integer status = rest.getInt("STATUS");
-                System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
-            }
-            pstmt.executeUpdate();
-            //closeConnection(conn, pstmt, resultSet);
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());           
-        }
-    }
-    
-=======
->>>>>>> Stashed changes
     public static void insertT_Pessoa() {        
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
             Statement statement = connection.createStatement();
@@ -361,6 +321,7 @@ public class DataBase {
         //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.updateT_Pessoa("Marlyson Xavier", "Sistemas Da Informação",1);
         //app.deleteT_Pessoa("32154787851");
+        //app.selectT_Pessoa();
         
         //app.criaT_Acervo();
         //app.updateT_Acervo(1, "ÁPIS LÍNGUA PORTUGUESA - 1º ANO", "EDITORA ATICA S/A", 2019, 1, 1);
