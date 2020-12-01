@@ -35,6 +35,9 @@ public class PessoaDAO {
         
         app.deleteT_Pessoa(p.getMatricula());
     }
+    public void select(Pessoa p){
+        
+    }
     public List<Pessoa> read(){
         
         List<Pessoa> pessoas = new ArrayList<>();

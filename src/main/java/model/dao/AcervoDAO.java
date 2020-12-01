@@ -24,17 +24,17 @@ import model.bean.Pessoa;
 public class AcervoDAO {
     DataBase app = new DataBase();
     
-    public void create(Acervo a){
+    public void create(Acervo ac){
         
-        app.insertT_Acervo(a.getTitulo(), a.getEditora(), a.getAno(), a.getEstante(), a.getPrateleira(), a.getStatus());
+        app.insertT_Acervo(ac.getTitulo(), ac.getEditora(), ac.getAno(), ac.getEstante(), ac.getPrateleira(), ac.getStatus());
     }
-    public void update(Acervo a){
+    public void update(Acervo ac){
         
-        app.updateT_Acervo(a.getId(), a.getTitulo(), a.getEditora(), a.getAno(), a.getEstante(), a.getPrateleira());
+        app.updateT_Acervo(ac.getId(), ac.getTitulo(), ac.getEditora(), ac.getAno(), ac.getEstante(), ac.getPrateleira());
     }
-    public void delete(Acervo a){
+    public void delete(Acervo ac){
         
-        app.deleteT_Acervo(a.getId(), a.getAno());
+        app.deleteT_Acervo(ac.getId(), ac.getAno());
     }
     public List<Acervo> read(){
         
