@@ -181,17 +181,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario.add(telaCadUser);
         telaCadUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
         JOptionPane.showMessageDialog(null, "Usuario Deslogado \nVoltando Para Tela de Login");
         TelaLogin tl = new TelaLogin();
         tl.setVisible(true);
         this.dispose();
-        //System.exit(0);  
     }//GEN-LAST:event_menuSairActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
         JOptionPane.showMessageDialog(null, "MORAIS LIBRARY"
                 + "\n"
                 + "\n"
@@ -209,16 +205,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        TelaUpdateUser tabelaLiv = new TelaUpdateUser();
-        desktopFuncionario.add(tabelaLiv);
-        tabelaLiv.setVisible(true);
+        IncluirAcervo ac = new IncluirAcervo();
+        desktopFuncionario.add(ac);
+        ac.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-
         FichaCatalografica fch = new FichaCatalografica();
         desktopFuncionario.add(fch);
         fch.setVisible(true);
-
     }//GEN-LAST:event_jMenuItem7ActionPerformed
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 

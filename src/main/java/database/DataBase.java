@@ -136,7 +136,7 @@ public class DataBase {
         }
     }
     public void updateT_Pessoa(String NOME, String CPF, String MATRICULA, String CURSO, String PSW, int ID) {
-        String sql = "UPDATE PESSOA SET NOME = ?," + "CURSO = ?" + "WHERE ID_PESSOA = ?";
+        String sql = "UPDATE PESSOA SET NOME = ?, CPF = ?, MATRICULA = ?, CURSO = ?, PSW = ? WHERE ID = ?";
         try (Connection conn = DataBase.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, NOME);
@@ -148,6 +148,7 @@ public class DataBase {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error ao atualizar!");
         }
     }
     public void deleteT_Pessoa(String MATRICULA) {

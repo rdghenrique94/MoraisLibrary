@@ -37,7 +37,6 @@ public class PessoaDAO {
     }
     public List<Pessoa> read(){
         
-        
         List<Pessoa> pessoas = new ArrayList<>();
         
         try (Connection conn = DataBase.connect();
