@@ -366,7 +366,6 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         dtmLivros.addRow(dados);
         readTabela();
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         //        System.out.println("Linha Selecionada"+tabelaLivros.getSelectedRow());    REMOVER LINHA SELECIONADA NA TABELA
 
