@@ -86,6 +86,27 @@ public class DataBase {
             System.out.println(e.getMessage());
         }        
     }
+    public void selectT_Acervo(){
+            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
+            String buscaNome = "SELECT * FROM ACERVO";
+            try (Connection conn = DataBase.connect();                
+            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+            ResultSet rs = pstmt.executeQuery();           
+            while (rs.next()){
+                String titulo = rs.getString("TITULO");
+                String editora = rs.getString("EDITORA");
+                Integer ano = rs.getInt("ANO");
+                Integer estante  = rs.getInt("ESTANTE");
+                Integer prateleira = rs.getInt("PRATELEIRA");
+                Integer status = rs.getInt("STATUS");
+                System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
+            }
+            pstmt.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());           
+        }
+    }
     
     public void insertT_Acervo(String titulo, String editora, int ano,int estante,int prateleira, int status) {
         String sql = "INSERT INTO ACERVO(TITULO, EDITORA, ANO, ESTANTE, PRATELEIRA, STATUS) VALUES (?,?,?,?,?,1)";
@@ -135,6 +156,55 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
+    public void insertT_Funcao(String funcao, int id) {
+        String sql = "INSERT INTO FUNCAO(FUNCAO, ID_FUNCAO) VALUES (?,?)";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, funcao);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void selectT_Pessoa(){
+            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
+            String buscaNome = "SELECT * FROM PESSOA";
+            try (Connection conn = DataBase.connect();                
+            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+            ResultSet rs = pstmt.executeQuery();           
+            while (rs.next()){
+                String nome = rs.getString("NOME");
+                String cpf = rs.getString("CPF");
+                Integer matricula = rs.getInt("MATRICULA");
+                Integer curso  = rs.getInt("CURSO");
+                Integer senha = rs.getInt("PSW");
+                Integer funcao = rs.getInt("FUNCAO");
+                System.out.println(nome+ "|" + matricula + "|" + matricula + "|" + curso + "|" + senha + "|" + funcao);
+            }
+            pstmt.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());           
+        }
+    }
+    public void insertT_Pessoa(String nome, String cpf,String matricula, String curso, String psw, int funcao) {
+        String sql = "INSERT INTO PESSOA(NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?)";
+        try (Connection conn = DataBase.connect();          
+            PreparedStatement pstmt = conn.prepareStatement(sql)){            
+            pstmt.setString(1, nome);
+            pstmt.setString(2, cpf);
+            pstmt.setString(3, matricula);
+            pstmt.setString(4, curso);
+            pstmt.setString(5, psw);
+            pstmt.setInt(6, funcao);
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
+            closeConnection(conn, pstmt);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
+        }
+    }
     public void updateT_Pessoa(String NOME, String CPF, String MATRICULA, String CURSO, String PSW, int ID) {
         String sql = "UPDATE PESSOA SET NOME = ?, CPF = ?, MATRICULA = ?, CURSO = ?, PSW = ? WHERE ID = ?";
         try (Connection conn = DataBase.connect();
@@ -166,18 +236,6 @@ public class DataBase {
         }
     }
     
-    public void insertT_Funcao(String funcao, int id) {
-        String sql = "INSERT INTO FUNCAO(FUNCAO, ID_FUNCAO) VALUES (?,?)";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, funcao);
-            pstmt.setInt(2, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
     public void insertT_Status(String status,int id){
         String sql = "INSERT INTO STATUS(STATUS, ID_STATUS) VALUES(?,?)";
         try (Connection conn = DataBase.connect();
@@ -189,6 +247,7 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
+<<<<<<< Updated upstream
     
     public void insertT_Pessoa(String nome, String cpf,String matricula, String curso, String psw, int funcao) {
         String sql = "INSERT INTO PESSOA(NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?)";
@@ -230,6 +289,8 @@ public class DataBase {
         }
     }
     
+=======
+>>>>>>> Stashed changes
     public static void insertT_Pessoa() {        
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
             Statement statement = connection.createStatement();
