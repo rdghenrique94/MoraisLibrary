@@ -13,6 +13,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -21,31 +24,31 @@
             <Property name="text" type="java.lang.String" value="Biblioteca"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="menuAlugar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alugar Livros"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuBuscar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar Livros"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="menuReservar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reservar Livros"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Alugar Livros"/>
               </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cat&#xe1;logo"/>
+            <Property name="text" type="java.lang.String" value="Ficha Catalogr&#xe1;fica"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="menuSolicitarFicha">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Vizualizar Cat&#xe1;logo"/>
+                <Property name="text" type="java.lang.String" value="Solicitar Ficha Catalogr&#xe1;fica"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -57,7 +60,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem6"/>
+                <Property name="text" type="java.lang.String" value="Reservar Sala de Estudos"/>
               </Properties>
             </MenuItem>
           </SubComponents>

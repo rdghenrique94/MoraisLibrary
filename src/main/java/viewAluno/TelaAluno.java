@@ -5,6 +5,9 @@
  */
 package viewAluno;
 
+import javax.swing.JOptionPane;
+import view.TelaLogin;
+
 /**
  *
  * @author rodri
@@ -32,11 +35,11 @@ public class TelaAluno extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuAlugar = new javax.swing.JMenuItem();
+        menuBuscar = new javax.swing.JMenuItem();
+        menuReservar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        menuSolicitarFicha = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -56,33 +59,38 @@ public class TelaAluno extends javax.swing.JFrame {
         jMenu1.setText("Iniciar");
 
         jMenuItem1.setText("Logout");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Biblioteca");
 
-        jMenuItem2.setText("Buscar Livros");
-        jMenu2.add(jMenuItem2);
+        menuAlugar.setText("Alugar Livros");
+        jMenu2.add(menuAlugar);
 
-        jMenuItem3.setText("Reservar Livros");
-        jMenu2.add(jMenuItem3);
+        menuBuscar.setText("Buscar Livros");
+        jMenu2.add(menuBuscar);
 
-        jMenuItem4.setText("Alugar Livros");
-        jMenu2.add(jMenuItem4);
+        menuReservar.setText("Reservar Livros");
+        jMenu2.add(menuReservar);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Catálogo");
+        jMenu3.setText("Ficha Catalográfica");
 
-        jMenuItem5.setText("Vizualizar Catálogo");
-        jMenu3.add(jMenuItem5);
+        menuSolicitarFicha.setText("Solicitar Ficha Catalográfica");
+        jMenu3.add(menuSolicitarFicha);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Estudos");
 
-        jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.setText("Reservar Sala de Estudos");
         jMenu4.add(jMenuItem6);
 
         jMenuBar1.add(jMenu4);
@@ -102,6 +110,13 @@ public class TelaAluno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Usuario Deslogado \nVoltando Para Tela de Login");
+        TelaLogin tl = new TelaLogin();
+        tl.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,10 +161,10 @@ public class TelaAluno extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem menuAlugar;
+    private javax.swing.JMenuItem menuBuscar;
+    private javax.swing.JMenuItem menuReservar;
+    private javax.swing.JMenuItem menuSolicitarFicha;
     // End of variables declaration//GEN-END:variables
 }

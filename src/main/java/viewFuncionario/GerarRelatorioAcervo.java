@@ -59,6 +59,7 @@ public class GerarRelatorioAcervo extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Relatório do Acervo");
 
         btnLivros.setText("Relatório de Livos");
         btnLivros.addActionListener(new java.awt.event.ActionListener() {

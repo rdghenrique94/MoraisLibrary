@@ -1,12 +1,11 @@
 package viewFuncionario;
 
+import database.DataBase;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Acervo;
-import model.bean.Pessoa;
 import model.dao.AcervoDAO;
-import model.dao.PessoaDAO;
 
 public class IncluirAcervo extends javax.swing.JInternalFrame {
 
@@ -399,6 +398,7 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         ac.setEditora(txtEditora.getText());
         
         dao.create(ac);
+        cleanFields();
     }//GEN-LAST:event_btnCadastrarActionPerformed
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
             Acervo ac = new Acervo();
@@ -463,14 +463,16 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaAcervoMouseClicked
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-//        AcervoDAO dao = new AcervoDAO();
-//        String busca = txtBusca.getText();
-//        if (){
+        AcervoDAO dao = new AcervoDAO();
+        String busca = txtBusca.getText();
+        readTabela();
 //        p.setId((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(),0));
     }//GEN-LAST:event_btnBuscaActionPerformed
 
     private void btnListAllBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAllBooksActionPerformed
         readTabela();
+//        DataBase db = new DataBase();
+//        db.selectT_Acervo();
     }//GEN-LAST:event_btnListAllBooksActionPerformed
 
 

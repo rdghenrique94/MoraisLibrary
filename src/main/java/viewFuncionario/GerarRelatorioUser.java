@@ -64,6 +64,7 @@ public class GerarRelatorioUser extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Relatório dos Usuários");
 
         jButton1.setText("Relatório de Usuarios");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

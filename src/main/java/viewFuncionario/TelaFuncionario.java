@@ -30,6 +30,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuArquivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
         menuUser = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -38,7 +40,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuLivro = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -69,6 +70,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenu2.add(jMenuItem10);
 
         menuArquivo.add(jMenu2);
+
+        jMenu3.setText("Ficha Catalográfica");
+
+        jMenuItem5.setText("Gerar Ficha Catalográfica");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        menuArquivo.add(jMenu3);
 
         menuSair.setText("Logout");
         menuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -125,14 +138,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
             }
         });
         menuLivro.add(jMenuItem9);
-
-        jMenuItem7.setText("Ficha Catalográfica");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        menuLivro.add(jMenuItem7);
 
         menuCadUser.add(menuLivro);
 
@@ -218,11 +223,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         desktopFuncionario.add(ac);
         ac.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        FichaCatalografica fch = new FichaCatalografica();
-        desktopFuncionario.add(fch);
-        fch.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
     }//GEN-LAST:event_jMenuItem9ActionPerformed
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -251,6 +251,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
         gru.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        GerarFichaCatalografica gfc = new GerarFichaCatalografica();
+        desktopFuncionario.add(gfc);
+        gfc.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -288,6 +295,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopFuncionario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -296,8 +304,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuCadUser;
