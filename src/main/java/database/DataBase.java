@@ -342,6 +342,32 @@ public class DataBase {
             System.out.println(e.getMessage());
         }        
     }
+    public void selectAcervo(String tituloBusca){
+            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
+            String sql = "SELECT * FROM ACERVO,PRATELEIRA,ESTANTES  where TITULO = (?)";
+            try (Connection conn = DataBase.connect();                
+            PreparedStatement acervo = conn.prepareStatement(sql)){
+            acervo.setString(1,tituloBusca);
+            ResultSet acerv = acervo.executeQuery();
+            
+            while (acerv.next()){
+                String titulo = acerv.getString("TITULO");
+                String editora = acerv.getString("EDITORA");
+                Integer ano = acerv.getInt("ANO");
+                String estante  = acerv.getString("ESTANTE");
+                String prateleira = acerv.getString("PRATELEIRA");
+                Integer status = acerv.getInt("STATUS");
+                //System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
+            //return;
+            }
+            acervo.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());           
+        
+        }     
+    
+}
     
     public static void main(String[] args) {
         DataBase app = new DataBase();

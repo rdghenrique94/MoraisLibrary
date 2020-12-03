@@ -224,6 +224,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
         ac.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        TelaAlugarLivro tal = new TelaAlugarLivro();
+        desktopFuncionario.add(tal);
+        tal.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 
