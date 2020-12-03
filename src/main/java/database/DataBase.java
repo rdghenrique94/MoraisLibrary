@@ -108,6 +108,32 @@ public class DataBase {
         }
     }
     
+    
+    public void selectAcervo(int ID_ACERVO){
+            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
+            String sql = "SELECT * FROM ACERVO,PRATELEIRA,ESTANTES  where ID_ACERVO = (?)";
+            try (Connection conn = DataBase.connect();                
+            PreparedStatement acervo = conn.prepareStatement(sql)){
+            acervo.setInt(1,ID_ACERVO);
+            ResultSet acerv = acervo.executeQuery();
+            
+            while (acerv.next()){
+                String titulo = acerv.getString("TITULO");
+                String editora = acerv.getString("EDITORA");
+                Integer ano = acerv.getInt("ANO");
+                String estante  = acerv.getString("ESTANTE");
+                String prateleira = acerv.getString("PRATELEIRA");
+                Integer status = acerv.getInt("STATUS");
+                System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
+            }
+            acervo.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());           
+        }
+    }
+    
+    
     public void insertT_Acervo(String titulo, String editora, int ano,int estante,int prateleira, int status) {
         String sql = "INSERT INTO ACERVO(TITULO, EDITORA, ANO, ESTANTE, PRATELEIRA, STATUS) VALUES (?,?,?,?,?,1)";
         try (Connection conn = DataBase.connect();          
@@ -344,5 +370,6 @@ public class DataBase {
         //app.insertT_Acervo("Marlyson Xavier", "Jampa.Com", 2020, 1, 1, 1);
         //app.deleteT_Acervo(30001,2020);
         //app.selectT_Acervo();
+        //app.select(30002);
     }
 }

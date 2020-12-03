@@ -26,12 +26,33 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         txtPrateleira.setText("");
     }
     
+    
     public void readTabela(){
         DefaultTableModel modelo = (DefaultTableModel) tabelaAcervo.getModel();
         modelo.setNumRows(0);
         AcervoDAO adao = new AcervoDAO();
         
         for (Acervo a: adao.read()){
+            
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getTitulo(),
+                a.getEditora(),
+                a.getAno(),
+                a.getEstante(),
+                a.getPrateleira(),
+                a.getStatus()
+                
+            });
+        }
+    }
+    
+    public void readTab(){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaAcervo.getModel();
+        modelo.setNumRows(0);
+        AcervoDAO adao = new AcervoDAO();
+        
+        for (Acervo a: AcervoDAO.selectAcervo(txtBusca.getText())){
             
             modelo.addRow(new Object[]{
                 a.getId(),
@@ -463,10 +484,11 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaAcervoMouseClicked
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        AcervoDAO dao = new AcervoDAO();
-        String busca = txtBusca.getText();
-        readTabela();
-//        p.setId((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(),0));
+        Acervo ac = new Acervo();
+        AcervoDAO db = new AcervoDAO();
+        ac.setTitulo(txtBusca.getText());
+        db.selectAcervo(ac.getTitulo());
+        
     }//GEN-LAST:event_btnBuscaActionPerformed
 
     private void btnListAllBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAllBooksActionPerformed
