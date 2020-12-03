@@ -84,6 +84,11 @@ public class TelaAluno extends javax.swing.JFrame {
         jMenu3.setText("Ficha Catalográfica");
 
         menuSolicitarFicha.setText("Solicitar Ficha Catalográfica");
+        menuSolicitarFicha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSolicitarFichaActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuSolicitarFicha);
 
         jMenuBar1.add(jMenu3);
@@ -117,6 +122,12 @@ public class TelaAluno extends javax.swing.JFrame {
         tl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuSolicitarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSolicitarFichaActionPerformed
+        TelaSolicitarFicha tsf = new TelaSolicitarFicha();
+        desktopAluno.add(tsf);
+        tsf.setVisible(true);
+    }//GEN-LAST:event_menuSolicitarFichaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -184,7 +184,7 @@ public class DataBase {
                 Integer curso  = rs.getInt("CURSO");
                 Integer senha = rs.getInt("PSW");
                 Integer funcao = rs.getInt("FUNCAO");
-                System.out.println(nome+ "|" + matricula + "|" + matricula + "|" + curso + "|" + senha + "|" + funcao);
+                //System.out.println(nome+ "|" + matricula + "|" + matricula + "|" + curso + "|" + senha + "|" + funcao);
             }
             pstmt.executeUpdate();
             //closeConnection(conn, pstmt, resultSet);
@@ -220,9 +220,10 @@ public class DataBase {
             pstmt.setString(5, PSW);
             pstmt.setInt(6, ID);
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Exito ao Aatualizar!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao atualizar!");
+            JOptionPane.showMessageDialog(null, "Error ao Atualizar!");
         }
     }
     public void deleteT_Pessoa(String MATRICULA) {
@@ -234,9 +235,11 @@ public class DataBase {
             //pstmt.setInt(3, ID);
             //pstmt.setInt(4, MATRICULA);
             //pstmt.setString(2, CURSO);
+            JOptionPane.showMessageDialog(null, "Exito ao Remover!");
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error ao Remover!");
         }
     }
     
@@ -299,6 +302,19 @@ public class DataBase {
         } catch (SQLException e) {
             //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
+    }
+    public void criaT_Aluguel(){
+        try (Connection connection = DriverManager.getConnection(url)){
+            Statement statement = connection.createStatement();
+            statement.execute("CREATE TABLE IF NOT EXISTS ALUGUEL(STATUS STRING not null, "
+                    + "ID_STATUS INTEGER not null PRIMARY KEY AUTOINCREMENT"
+                    + "MATRICULA"
+                    + "TITULO"
+                    + ")"
+                    + "");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }        
     }
     
     public static void main(String[] args) {
