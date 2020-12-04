@@ -13,7 +13,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.bean.Emprestimo;
 import model.bean.Pessoa;
+import model.dao.EmprestimoDAO;
 import model.dao.PessoaDAO;
 
 /**
@@ -27,23 +30,26 @@ public class GerarRelatorioEmprestimo extends javax.swing.JInternalFrame {
      */
     public GerarRelatorioEmprestimo() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tableEmprestimo.getModel(); // FAZER ORDENAÇÃO NA TABELA
+        tableEmprestimo.setRowSorter(new TableRowSorter(modelo));
     }
     
     public void readTabela(){
-        DefaultTableModel modelo = (DefaultTableModel) tableUser.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tableEmprestimo.getModel();
         modelo.setNumRows(0);
-        PessoaDAO pdao = new PessoaDAO();
+        EmprestimoDAO edao = new EmprestimoDAO();
         
-        for (Pessoa p: pdao.read()){
+        for (Emprestimo e: edao.readEmprestimo()){
             
             modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.getCpf(),
-                p.getMatricula(),
-                p.getCurso(),
-                p.getPsw(),
-                p.getFuncao()
+                e.getId(),
+                e.getMatricula(),
+                e.getTitulo(),
+                e.getFuncao(),
+                e.getDataEmprestimo(),
+                e.getDataDevolucao(),
+                e.getStatus()
             });
         }
     }
@@ -60,28 +66,36 @@ public class GerarRelatorioEmprestimo extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableUser = new javax.swing.JTable();
+        tableEmprestimo = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Relatório dos Usuários");
 
-        jButton1.setText("Relatório de Usuarios");
+        jButton1.setText("Relatório de Emprestimos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        tableUser.setModel(new javax.swing.table.DefaultTableModel(
+        tableEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOME", "CPF", "MATRICULA", "CURSO", "SENHA", "FUNÇÃO"
+                "ID", "MATRICULA", "TITULO", "FUNÇÃO", "DATA DO EMPRESTIMO", "DATA DE DEVOLUÇÃO", "STATUS"
             }
-        ));
-        jScrollPane1.setViewportView(tableUser);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableEmprestimo);
 
         jButton2.setText("Gerar PDF");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +177,6 @@ public class GerarRelatorioEmprestimo extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableUser;
+    private javax.swing.JTable tableEmprestimo;
     // End of variables declaration//GEN-END:variables
 }

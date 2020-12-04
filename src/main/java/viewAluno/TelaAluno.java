@@ -35,7 +35,6 @@ public class TelaAluno extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menuAlugar = new javax.swing.JMenuItem();
         menuBuscar = new javax.swing.JMenuItem();
         menuReservar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -70,9 +69,6 @@ public class TelaAluno extends javax.swing.JFrame {
 
         jMenu2.setText("Biblioteca");
 
-        menuAlugar.setText("Alugar Livros");
-        jMenu2.add(menuAlugar);
-
         menuBuscar.setText("Buscar Livros");
         jMenu2.add(menuBuscar);
 
@@ -96,6 +92,11 @@ public class TelaAluno extends javax.swing.JFrame {
         jMenu4.setText("Estudos");
 
         jMenuItem6.setText("Reservar Sala de Estudos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuBar1.add(jMenu4);
@@ -128,6 +129,9 @@ public class TelaAluno extends javax.swing.JFrame {
         desktopAluno.add(tsf);
         tsf.setVisible(true);
     }//GEN-LAST:event_menuSolicitarFichaActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +177,6 @@ public class TelaAluno extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem menuAlugar;
     private javax.swing.JMenuItem menuBuscar;
     private javax.swing.JMenuItem menuReservar;
     private javax.swing.JMenuItem menuSolicitarFicha;

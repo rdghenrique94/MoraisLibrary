@@ -24,11 +24,6 @@
             <Property name="text" type="java.lang.String" value="Biblioteca"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuAlugar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Alugar Livros"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuBuscar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar Livros"/>
@@ -65,6 +60,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reservar Sala de Estudos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

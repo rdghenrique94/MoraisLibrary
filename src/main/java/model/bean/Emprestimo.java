@@ -5,19 +5,25 @@ import model.*;
 public class Emprestimo {
     
     private int id;
-    private Acervo titulo;
-    private Pessoa matricula;
-    private Acervo funcao;
+    private String matricula;
+    private String titulo;
+    private int funcao;
     private String dataEmprestimo;
-    private String dataDevolvido;
+    private String dataDevolucao;
+    private int status;
+    
+    public Emprestimo(){
+        
+    }
 
-    public Emprestimo(int id, Acervo titulo, model.bean.Pessoa matricula, Acervo funcao, String dataEmprestimo, String dataDevolvido) {
+    public Emprestimo(int id, String titulo, String matricula, int funcao, String dataEmprestimo, String dataDevolucao, int status) {
         this.id = id;
         this.titulo = titulo;
         this.matricula = matricula;
         this.funcao = funcao;
         this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolvido = dataDevolvido;
+        this.dataDevolucao = dataDevolucao;
+        this.status = status;
     }
 
     public int getId() {
@@ -28,27 +34,27 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public Acervo getTitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(Acervo titulo) {
+    public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    public model.bean.Pessoa getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(model.bean.Pessoa matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
-    public Acervo getFuncao() {
+    public int getFuncao() {
         return funcao;
     }
 
-    public void setFuncao(Acervo funcao) {
+    public void setFuncao(int funcao) {
         this.funcao = funcao;
     }
 
@@ -60,13 +66,23 @@ public class Emprestimo {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public String getDataDevolvido() {
-        return dataDevolvido;
+    public String getDataDevolucao() {
+        return dataDevolucao;
     }
 
-    public void setDataDevolvido(String dataDevolvido) {
-        this.dataDevolvido = dataDevolvido;
+    public void setDataDevolucao(String dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
 
    
     

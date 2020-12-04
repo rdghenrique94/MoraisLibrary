@@ -10,10 +10,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.bean.Acervo;
 import model.bean.Acervo;
 import model.bean.Pessoa;
 
@@ -41,7 +43,7 @@ public class AcervoDAO {
         List<Acervo> acervos = new ArrayList<>();
         
         try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT *FROM ACERVO")){
+            PreparedStatement pstmt = conn.prepareStatement("SELECT DISTINCT *FROM ACERVO")){
             ResultSet rs = pstmt.executeQuery();
             
             while(rs.next()){
@@ -61,33 +63,31 @@ public class AcervoDAO {
         }
         return acervos;
     }
+
+
+public List<Acervo> getAcervosByLivro(int livro){
+        List<Acervo> acervos = new ArrayList();
+        String sql = "SELECT * FROM ACERVO WHERE ID_ACERVO ="+livro;
+        try (Connection conn = DataBase.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+        while(rs.next()){
+            Acervo ac = new Acervo();
+            ac.setId(rs.getInt("ID_ACERVO"));
+            ac.setTitulo(rs.getString("TITULO"));
+            ac.setEditora(rs.getString("EDITORA"));
+            ac.setAno(rs.getInt("ANO"));
+//            ac.setEstante(rs.getInt("ESTANTE"));
+//            ac.setPrateleira(rs.getInt("PRATELEIRA"));
+            ac.setStatus(rs.getInt("STATUS"));
+            acervos.add(ac);
+        }
+        
+    }catch(SQLException e){
+     
+    }return acervos;
+}
 }
 
-//    public void selectAcervo(String tituloBusca){
-//            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-//            String sql = "SELECT * FROM ACERVO,PRATELEIRA,ESTANTES  where TITULO = (?)";
-//            try (Connection conn = DataBase.connect();                
-//            PreparedStatement acervo = conn.prepareStatement(sql)){
-//            acervo.setString(1,tituloBusca);
-//            ResultSet acerv = acervo.executeQuery();
-//            
-//            while (acerv.next()){
-//                String titulo = acerv.getString("TITULO");
-//                String editora = acerv.getString("EDITORA");
-//                Integer ano = acerv.getInt("ANO");
-//                String estante  = acerv.getString("ESTANTE");
-//                String prateleira = acerv.getString("PRATELEIRA");
-//                Integer status = acerv.getInt("STATUS");
-//                //System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
-//            //return;
-//            }
-//            acervo.executeUpdate();
-//            //closeConnection(conn, pstmt, resultSet);
-//        }catch (SQLException e) {
-//            System.out.println(e.getMessage());           
-//        
-//        }     
-//    
-//}
              
 

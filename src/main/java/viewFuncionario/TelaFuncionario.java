@@ -1,17 +1,6 @@
 package viewFuncionario;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import javax.swing.JOptionPane;
-import model.bean.Pessoa;
-import model.dao.PessoaDAO;
 import view.TelaLogin;
 
 
@@ -43,6 +32,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -159,6 +149,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem13);
 
+        jMenuItem7.setText("Relatorios de Emprestimo");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
         menuCadUser.add(jMenu1);
 
         jMenu4.setText("Sobre");
@@ -261,6 +259,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
         gfc.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        GerarRelatorioEmprestimo gre = new GerarRelatorioEmprestimo();
+        desktopFuncionario.add(gre);
+        gre.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -309,6 +314,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuCadUser;

@@ -109,9 +109,38 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    public boolean checkLogin(String login, String senha){
-        return login.equals(txtMatricula.getText()) && senha.equals(txtSenha.getPassword());
-}
+//    public boolean checkLogin(){
+//        String mat = txtMatricula.getText();
+//            String pass = String.valueOf(txtSenha.getPassword());            
+//            String buscaNome = "SELECT * FROM PESSOA";
+//            
+//            try (Connection conn = DataBase.connect();                
+//                PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
+//                ResultSet resultSet = pstmt.executeQuery();
+//                
+//                while (resultSet.next()){
+//                    String matri = resultSet.getString("MATRICULA");
+//                    String passw = resultSet.getString("PSW");
+//                    Integer func = resultSet.getInt("FUNCAO");
+//                    String nom = resultSet.getString("NOME");
+//                    if(mat.equals(matri)&&pass.equals(passw)&& func!=4){
+//                        JOptionPane.showMessageDialog(null,"Usuario não autorizado!!!\n"+ nom);
+//                        
+//                        break;
+//                    }                
+//                    else{
+//                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!\n"+ nom);
+//                        
+//                        
+//                    }
+//                }
+//                pstmt.executeUpdate();
+//            }catch (SQLException e) {
+//                //System.out.println(e.getMessage());
+//                //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
+//            }
+//        return false;
+//    }  
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
            
             String mat = txtMatricula.getText();

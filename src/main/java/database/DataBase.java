@@ -1,6 +1,8 @@
 package database;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -329,19 +331,7 @@ public class DataBase {
             //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
     }
-    public void criaT_Aluguel(){
-        try (Connection connection = DriverManager.getConnection(url)){
-            Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS ALUGUEL(STATUS STRING not null, "
-                    + "ID_STATUS INTEGER not null PRIMARY KEY AUTOINCREMENT"
-                    + "MATRICULA"
-                    + "TITULO"
-                    + ")"
-                    + "");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }        
-    }
+    
     public void selectAcervo(String tituloBusca){
             //String sql = "select * from ACERVO WHERE EDITORA = '?'";
             String sql = "SELECT * FROM ACERVO,PRATELEIRA,ESTANTES  where TITULO = (?)";
@@ -368,6 +358,28 @@ public class DataBase {
         }     
     
 }
+        LocalDate ld = LocalDate.now();
+        LocalDate ldt = LocalDate.now().plusWeeks(2L);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String dateForm = dtf.format(ldt);
+        String dateUser = dtf.format(ld);
+    public void insertT_Emprestimo(String matricula, String titulo) {
+        String sql = "INSERT INTO EMPRESTIMO(MATRICULA, TITULO, DATA_DEVOLUCAO, DATA_EMPRESTIMO) VALUES (?,?,?,?)";
+        try (Connection conn = DataBase.connect();          
+            PreparedStatement pstmt = conn.prepareStatement(sql)){            
+            pstmt.setString(1, matricula);
+            pstmt.setString(2, titulo);
+            pstmt.setString(3, dateForm);
+            pstmt.setString(4, dateUser);
+            //pstmt.setInt(5, status);
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Exito ao Alugar!");
+            closeConnection(conn, pstmt);
+        } catch (SQLException e) {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Error ao Alugar!");
+        }
+    }
     
     public static void main(String[] args) {
         DataBase app = new DataBase();
@@ -384,7 +396,7 @@ public class DataBase {
         //app.sele_UserSenha("20191022006","32072133");
         //app.insertT_Status("ATRASO", 4);
         //app.criaT_Regras();
-        
+        app.insertT_Emprestimo("20191022002", "VEREDAS DA PALAVRA - VOLUME 2");
         //app.criaT_Pessoa();
         //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.updateT_Pessoa("Marlyson Xavier", "Sistemas Da Informação",1);

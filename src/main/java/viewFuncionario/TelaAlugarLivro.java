@@ -5,10 +5,13 @@
  */
 package viewFuncionario;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Acervo;
+import model.bean.Emprestimo;
 import model.dao.AcervoDAO;
+import model.dao.EmprestimoDAO;
 
 /**
  *
@@ -45,6 +48,7 @@ public class TelaAlugarLivro extends javax.swing.JInternalFrame {
                 a.getTitulo(),
                 a.getAno(),
                 a.getEditora(),
+                a.getStatus()
             });
         }
     }
@@ -65,6 +69,8 @@ public class TelaAlugarLivro extends javax.swing.JInternalFrame {
         tableEmprestimo = new javax.swing.JTable();
         btnEmprestimo = new javax.swing.JButton();
         btnListarLivros = new javax.swing.JButton();
+        boxUsuario = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Aluguel de Livros\n");
@@ -82,15 +88,25 @@ public class TelaAlugarLivro extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "TITULO", "ANO", "EDITORA"
+                "ID", "TITULO", "ANO", "EDITORA", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tableEmprestimo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableEmprestimoMouseClicked(evt);
+            }
+        });
+        tableEmprestimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableEmprestimoKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tableEmprestimo);
@@ -109,6 +125,10 @@ public class TelaAlugarLivro extends javax.swing.JInternalFrame {
             }
         });
 
+        boxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Aluno", "Professor", "Visitante" }));
+
+        jLabel2.setText("Usuario");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,29 +143,38 @@ public class TelaAlugarLivro extends javax.swing.JInternalFrame {
                         .addComponent(btnListarLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEmprestimo)
-                        .addGap(66, 66, 66))
+                        .addGap(69, 69, 69))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(104, 104, 104)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(boxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEmprestimo)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addComponent(btnListarLivros)
-                        .addGap(8, 8, 8)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btnEmprestimo)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,18 +196,40 @@ public class TelaAlugarLivro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMatriculaActionPerformed
 
     private void btnEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimoActionPerformed
-        
+            Emprestimo ep = new Emprestimo();
+            EmprestimoDAO edao = new EmprestimoDAO();
+        if (tableEmprestimo.getSelectedRow() != -1){
+            ep.setMatricula(txtMatricula.getText());
+            ep.setFuncao(boxUsuario.getSelectedIndex());
+            ep.setTitulo((String)tableEmprestimo.getValueAt(tableEmprestimo.getSelectedRow(),1));
+            edao.insertT_Emprestimo(ep.getMatricula(), ep.getTitulo(), ep.getFuncao());
+            cleanFields();
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione Um Livro para Editar ");
+            
+        }
     }//GEN-LAST:event_btnEmprestimoActionPerformed
 
     private void btnListarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarLivrosActionPerformed
         readTabela();
     }//GEN-LAST:event_btnListarLivrosActionPerformed
 
+    private void tableEmprestimoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableEmprestimoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableEmprestimoKeyReleased
+
+    private void tableEmprestimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmprestimoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableEmprestimoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxUsuario;
     private javax.swing.JButton btnEmprestimo;
     private javax.swing.JButton btnListarLivros;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEmprestimo;
