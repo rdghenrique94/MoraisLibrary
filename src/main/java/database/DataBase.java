@@ -220,6 +220,7 @@ public class DataBase {
             System.out.println(e.getMessage());           
         }
     }
+    
     public void insertT_Pessoa(String nome, String cpf,String matricula, String curso, String psw, int funcao) {
         String sql = "INSERT INTO PESSOA(NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?)";
         try (Connection conn = DataBase.connect();          
@@ -254,6 +255,49 @@ public class DataBase {
             JOptionPane.showMessageDialog(null, "Error ao Atualizar!");
         }
     }
+    
+    public void selectT_Reserva(String status,int id_vagas){
+            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
+            String buscaVaga = "SELECT * FROM VAGAS WHERE STATUS = ? AND ID_VAGAS= ?";
+            try (Connection conn = DataBase.connect();                
+            PreparedStatement pstmt = conn.prepareStatement(buscaVaga)){
+            ResultSet rs = pstmt.executeQuery();
+            pstmt.setString(1, status);
+            pstmt.setInt(2, id_vagas);                  
+            
+            while (rs.next()){
+                Integer idVaga = rs.getInt("ID_VAGAS");
+                String statu = rs.getString("STATUS");
+                //Integer idVag = rs.getInt("ID_VAGAS");
+                //Integer curso  = rs.getInt("CURSO");
+                //Integer senha = rs.getInt("PSW");
+                //Integer funcao = rs.getInt("FUNCAO");
+                //System.out.println(nome+ "|" + matricula + "|" + matricula + "|" + curso + "|" + senha + "|" + funcao);
+                System.out.println(idVaga + "|" + statu);
+                //JOptionPane.showMessageDialog(null, rs);
+                
+            }
+            pstmt.executeUpdate();
+            //closeConnection(conn, pstmt, resultSet);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());           
+        }
+    }
+    
+    public void updateT_Reserva(String status,int id_vagas) {
+        String sql = "UPDATE VAGAS SET STATUS = ? WHERE ID_VAGAS= ?";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, status);
+            pstmt.setInt(2, id_vagas);
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Exito ao Aatualizar!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error ao Atualizar!");
+        }
+    }
+    
     public void deleteT_Pessoa(String MATRICULA) {
         String sql = "DELETE FROM PESSOA WHERE MATRICULA = ?";
         try (Connection conn = DataBase.connect();
@@ -363,6 +407,7 @@ public class DataBase {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dateForm = dtf.format(ldt);
         String dateUser = dtf.format(ld);
+        
     public void insertT_Emprestimo(String matricula, String titulo) {
         String sql = "INSERT INTO EMPRESTIMO(MATRICULA, TITULO, DATA_DEVOLUCAO, DATA_EMPRESTIMO) VALUES (?,?,?,?)";
         try (Connection conn = DataBase.connect();          
@@ -396,7 +441,7 @@ public class DataBase {
         //app.sele_UserSenha("20191022006","32072133");
         //app.insertT_Status("ATRASO", 4);
         //app.criaT_Regras();
-        app.insertT_Emprestimo("20191022002", "VEREDAS DA PALAVRA - VOLUME 2");
+        //app.insertT_Emprestimo("20191022002", "VEREDAS DA PALAVRA - VOLUME 2");
         //app.criaT_Pessoa();
         //app.insertT_Pessoa("Gilson","324.629.304-12","20201023320","ADM","32072133",2);
         //app.updateT_Pessoa("Marlyson Xavier", "Sistemas Da Informação",1);
@@ -409,5 +454,7 @@ public class DataBase {
         //app.deleteT_Acervo(30001,2020);
         //app.selectT_Acervo();
         //app.select(30002);
+        //app.selectT_Reserva("DISPONIVEL", 2);
+        app.selectT_Reserva("OCUPADA",2);
     }
 }
