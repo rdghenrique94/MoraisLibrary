@@ -52,7 +52,6 @@ public class DataBase {
                 Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    
     public void criaT_Pessoa() {        
         try (Connection conn = DriverManager.getConnection(url)) {
             Statement statement = conn.createStatement();
@@ -61,7 +60,6 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    
     public void criaT_Acervo(){
         try (Connection connection = DriverManager.getConnection(url)) {
             Statement statement = connection.createStatement();
@@ -70,7 +68,6 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }    
-    
     public void criaT_Regras(){
         try(Connection connection = DriverManager.getConnection(url)){
             Statement statement = connection.createStatement();
@@ -79,7 +76,6 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    
     public void criaT_Status(){
         try (Connection connection = DriverManager.getConnection(url)){
             Statement statement = connection.createStatement();
@@ -87,106 +83,6 @@ public class DataBase {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }        
-    }
-    public void selectT_Acervo(){
-            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            String buscaNome = "SELECT * FROM ACERVO";
-            try (Connection conn = DataBase.connect();                
-            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet rs = pstmt.executeQuery();           
-            while (rs.next()){
-                String titulo = rs.getString("TITULO");
-                String editora = rs.getString("EDITORA");
-                Integer ano = rs.getInt("ANO");
-                Integer estante  = rs.getInt("ESTANTE");
-                Integer prateleira = rs.getInt("PRATELEIRA");
-                Integer status = rs.getInt("STATUS");
-                System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
-            }
-            pstmt.executeUpdate();
-            //closeConnection(conn, pstmt, resultSet);
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());           
-        }
-    }
-    
-    
-    public void selectAcervo(int ID_ACERVO){
-            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            String sql = "SELECT * FROM ACERVO,PRATELEIRA,ESTANTES  where ID_ACERVO = (?)";
-            try (Connection conn = DataBase.connect();                
-            PreparedStatement acervo = conn.prepareStatement(sql)){
-            acervo.setInt(1,ID_ACERVO);
-            ResultSet acerv = acervo.executeQuery();
-            
-            while (acerv.next()){
-                String titulo = acerv.getString("TITULO");
-                String editora = acerv.getString("EDITORA");
-                Integer ano = acerv.getInt("ANO");
-                String estante  = acerv.getString("ESTANTE");
-                String prateleira = acerv.getString("PRATELEIRA");
-                Integer status = acerv.getInt("STATUS");
-                System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
-            }
-            acervo.executeUpdate();
-            //closeConnection(conn, pstmt, resultSet);
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());           
-        }
-    }
-    
-    
-    public void insertT_Acervo(String titulo, String editora, int ano,int estante,int prateleira, int status) {
-        String sql = "INSERT INTO ACERVO(TITULO, EDITORA, ANO, ESTANTE, PRATELEIRA, STATUS) VALUES (?,?,?,?,?,1)";
-        try (Connection conn = DataBase.connect();          
-            PreparedStatement pstmt = conn.prepareStatement(sql)){            
-            pstmt.setString(1, titulo);
-            pstmt.setString(2, editora);
-            pstmt.setInt(3, ano);
-            pstmt.setInt(4, estante);
-            pstmt.setInt(5, prateleira);
-            //pstmt.setInt(6, status);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Exito ao Cadastrado!");
-            closeConnection(conn, pstmt);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
-        }
-    }
-    
-    public void updateT_Acervo(int ID, String TITULO, String EDITORA, int ANO, int ESTANTE, int PRATELEIRA) {
-        String sql = "UPDATE ACERVO SET TITULO = ?," + "EDITORA = ?," + "ANO = ?," + "ESTANTE = ?," + "PRATELEIRA = ?," + "STATUS = 1 " + "WHERE ID_ACERVO = ?";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement altA = conn.prepareStatement(sql)) {
-            altA.setString(1, TITULO);
-            altA.setString(2, EDITORA);
-            altA.setInt(3, ANO);
-            altA.setInt(4, ESTANTE);
-            altA.setInt(5, PRATELEIRA);
-            altA.setInt(6, ID);
-            altA.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Informações do Livro Selecionado Atualizadas!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao Atualizar Informações do Livro Selecionado!");
-        }    
-    }
-        
-    public void deleteT_Acervo(int ID_ACERVO,int ANO) {
-        String sql = "DELETE FROM ACERVO WHERE ID_ACERVO = ? and ANO = ?";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, ID_ACERVO);
-            pstmt.setInt(2, ANO);
-            //pstmt.setInt(3, ID);
-            //pstmt.setInt(4, MATRICULA);
-            //pstmt.setString(2, CURSO);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Exito ao Remover o Livro Selecionado!!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao Remover o Livro Selecionado!");
-        }
     }
     public void insertT_Funcao(String funcao, int id) {
         String sql = "INSERT INTO FUNCAO(FUNCAO, ID_FUNCAO) VALUES (?,?)";
@@ -199,63 +95,65 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    public void selectT_Pessoa(){
-            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            String buscaNome = "SELECT * FROM PESSOA";
-            try (Connection conn = DataBase.connect();                
+    public void insertT_Status(String status,int id){
+        String sql = "INSERT INTO STATUS(STATUS, ID_STATUS) VALUES(?,?)";
+        try (Connection conn = DataBase.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, status);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void insertT_Pessoa() {        
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
+            Statement statement = connection.createStatement();
+            statement.execute("INSERT INTO PESSOAS( ID, NOME, CPF) VALUES (1, 'Marlyson', 05967762418)");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void sele_UserSenha(String matricula, String senha) {        
+        String buscaNome = "SELECT * FROM PESSOA";
+        try (Connection conn = DataBase.connect();                
             PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet rs = pstmt.executeQuery();           
-            while (rs.next()){
-                String nome = rs.getString("NOME");
-                String cpf = rs.getString("CPF");
-                Integer matricula = rs.getInt("MATRICULA");
-                Integer curso  = rs.getInt("CURSO");
-                Integer senha = rs.getInt("PSW");
-                Integer funcao = rs.getInt("FUNCAO");
-                //System.out.println(nome+ "|" + matricula + "|" + matricula + "|" + curso + "|" + senha + "|" + funcao);
+            ResultSet resultSet = pstmt.executeQuery();           
+            //PreparedStatement pst = conn.prepareStatement(buscaSenha));
+            while (resultSet.next()){
+                String mat = resultSet.getString("MATRICULA");
+                String pass = resultSet.getString("PSW");
+                Integer func = resultSet.getInt("FUNCAO");
+                String nom = resultSet.getString("NOME");
+                
+                if(matricula.equals(mat)&&senha.equals(pass)&& func==1){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!! \n"+ nom);
+                    TelaAluno ta = new TelaAluno();
+                    ta.setVisible(true);
+                }                
+                else if(matricula.equals(mat)&&senha.equals(pass)&& func==2){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  \n"+ nom);
+                    TelaAluno ta = new TelaAluno();
+                    ta.setVisible(true);
+                }
+                else if(matricula.equals(mat)&&senha.equals(pass)&& func==3){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  \n"+ nom);
+                    TelaAluno ta = new TelaAluno();
+                    ta.setVisible(true);
+                }
+                else if(matricula.equals(mat)&&senha.equals(pass)&&func==4){
+                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  \n"+ nom);
+                    TelaFuncionario tf = new TelaFuncionario();
+                    tf.setVisible(true);                    
+                }
+                
             }
             pstmt.executeUpdate();
             //closeConnection(conn, pstmt, resultSet);
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());           
-        }
-    }
-    
-    public void insertT_Pessoa(String nome, String cpf,String matricula, String curso, String psw, int funcao) {
-        String sql = "INSERT INTO PESSOA(NOME, CPF, MATRICULA, CURSO, PSW, FUNCAO) VALUES (?,?,?,?,?,?)";
-        try (Connection conn = DataBase.connect();          
-            PreparedStatement pstmt = conn.prepareStatement(sql)){            
-            pstmt.setString(1, nome);
-            pstmt.setString(2, cpf);
-            pstmt.setString(3, matricula);
-            pstmt.setString(4, curso);
-            pstmt.setString(5, psw);
-            pstmt.setInt(6, funcao);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario Cadastrado!");
-            closeConnection(conn, pstmt);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error ao Cadastrar!");
+            //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
     }
-    public void updateT_Pessoa(String NOME, String CPF, String MATRICULA, String CURSO, String PSW, int ID) {
-        String sql = "UPDATE PESSOA SET NOME = ?, CPF = ?, MATRICULA = ?, CURSO = ?, PSW = ? WHERE ID = ?";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, NOME);
-            pstmt.setString(2, CPF);
-            pstmt.setString(3, MATRICULA);
-            pstmt.setString(4, CURSO);
-            pstmt.setString(5, PSW);
-            pstmt.setInt(6, ID);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Exito ao Aatualizar!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao Atualizar!");
-        }
-    }
-    
     public void selectT_Reserva(String status,int id_vagas){
             //String sql = "select * from ACERVO WHERE EDITORA = '?'";
             String buscaVaga = "SELECT * FROM VAGAS WHERE STATUS = ? AND ID_VAGAS= ?";
@@ -297,135 +195,6 @@ public class DataBase {
             JOptionPane.showMessageDialog(null, "Error ao Atualizar!");
         }
     }
-    
-    public void deleteT_Pessoa(String MATRICULA) {
-        String sql = "DELETE FROM PESSOA WHERE MATRICULA = ?";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, MATRICULA);
-            //pstmt.setFloat(2, CPF);
-            //pstmt.setInt(3, ID);
-            //pstmt.setInt(4, MATRICULA);
-            //pstmt.setString(2, CURSO);
-            JOptionPane.showMessageDialog(null, "Exito ao Remover!");
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error ao Remover!");
-        }
-    }
-    
-    public void insertT_Status(String status,int id){
-        String sql = "INSERT INTO STATUS(STATUS, ID_STATUS) VALUES(?,?)";
-        try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)){
-            pstmt.setString(1, status);
-            pstmt.setInt(2, id);
-            pstmt.executeUpdate();
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    public static void insertT_Pessoa() {        
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:banco_de_dados/DataBase.db")) {
-            Statement statement = connection.createStatement();
-            statement.execute("INSERT INTO PESSOAS( ID, NOME, CPF) VALUES (1, 'Marlyson', 05967762418)");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void sele_UserSenha(String matricula, String senha) {        
-        String buscaNome = "SELECT * FROM PESSOA";
-        try (Connection conn = DataBase.connect();                
-            PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-            ResultSet resultSet = pstmt.executeQuery();           
-            //PreparedStatement pst = conn.prepareStatement(buscaSenha));
-            while (resultSet.next()){
-                String mat = resultSet.getString("MATRICULA");
-                String pass = resultSet.getString("PSW");
-                Integer func = resultSet.getInt("FUNCAO");
-                String nom = resultSet.getString("NOME");
-                
-                if(matricula.equals(mat)&&senha.equals(pass)&& func==1){
-                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!! \n"+ nom);
-                    TelaAluno ta = new TelaAluno();
-                    ta.setVisible(true);
-                }                
-                else if(matricula.equals(mat)&&senha.equals(pass)&& func==2){
-                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  \n"+ nom);
-                    TelaAluno ta = new TelaAluno();
-                    ta.setVisible(true);
-                }
-                else if(matricula.equals(mat)&&senha.equals(pass)&& func==3){
-                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  \n"+ nom);
-                    TelaAluno ta = new TelaAluno();
-                    ta.setVisible(true);
-                }
-                else if(matricula.equals(mat)&&senha.equals(pass)&&func==4){
-                    JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!  \n"+ nom);
-                    TelaFuncionario tf = new TelaFuncionario();
-                    tf.setVisible(true);                    
-                }
-                
-            }
-            pstmt.executeUpdate();
-            //closeConnection(conn, pstmt, resultSet);
-        } catch (SQLException e) {
-            //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
-        }
-    }
-    
-    public void selectAcervo(String tituloBusca){
-            //String sql = "select * from ACERVO WHERE EDITORA = '?'";
-            String sql = "SELECT * FROM ACERVO,PRATELEIRA,ESTANTES  where TITULO = (?)";
-            try (Connection conn = DataBase.connect();                
-            PreparedStatement acervo = conn.prepareStatement(sql)){
-            acervo.setString(1,tituloBusca);
-            ResultSet acerv = acervo.executeQuery();
-            
-            while (acerv.next()){
-                String titulo = acerv.getString("TITULO");
-                String editora = acerv.getString("EDITORA");
-                Integer ano = acerv.getInt("ANO");
-                String estante  = acerv.getString("ESTANTE");
-                String prateleira = acerv.getString("PRATELEIRA");
-                Integer status = acerv.getInt("STATUS");
-                //System.out.println(titulo + "|" + editora + "|" + ano + "|" + estante + "|" + prateleira + "|" + status);
-            //return;
-            }
-            acervo.executeUpdate();
-            //closeConnection(conn, pstmt, resultSet);
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());           
-        
-        }     
-    
-}
-        LocalDate ld = LocalDate.now();
-        LocalDate ldt = LocalDate.now().plusWeeks(2L);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String dateForm = dtf.format(ldt);
-        String dateUser = dtf.format(ld);
-        
-    public void insertT_Emprestimo(String matricula, String titulo) {
-        String sql = "INSERT INTO EMPRESTIMO(MATRICULA, TITULO, DATA_DEVOLUCAO, DATA_EMPRESTIMO) VALUES (?,?,?,?)";
-        try (Connection conn = DataBase.connect();          
-            PreparedStatement pstmt = conn.prepareStatement(sql)){            
-            pstmt.setString(1, matricula);
-            pstmt.setString(2, titulo);
-            pstmt.setString(3, dateForm);
-            pstmt.setString(4, dateUser);
-            //pstmt.setInt(5, status);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Exito ao Alugar!");
-            closeConnection(conn, pstmt);
-        } catch (SQLException e) {
-                System.out.println(e);
-                JOptionPane.showMessageDialog(null, "Error ao Alugar!");
-        }
-    }
-    
     public static void main(String[] args) {
         DataBase app = new DataBase();
         //app.criaT_Aluno();
@@ -454,7 +223,5 @@ public class DataBase {
         //app.deleteT_Acervo(30001,2020);
         //app.selectT_Acervo();
         //app.select(30002);
-        //app.selectT_Reserva("DISPONIVEL", 2);
-        app.selectT_Reserva("OCUPADA",2);
     }
 }

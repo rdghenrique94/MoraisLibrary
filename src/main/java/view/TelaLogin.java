@@ -27,8 +27,10 @@ public class TelaLogin extends javax.swing.JFrame {
         btEntrar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         txtMatricula = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Acesso MORAIS LIBRARY");
 
         jLabel1.setText("Matricula");
 
@@ -60,27 +62,37 @@ public class TelaLogin extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("LOGIN");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                        .addComponent(btEntrar))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMatricula))
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                                .addComponent(btEntrar))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMatricula)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel3)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,11 +100,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btEntrar)
                     .addComponent(btSair))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,38 +121,7 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-//    public boolean checkLogin(){
-//        String mat = txtMatricula.getText();
-//            String pass = String.valueOf(txtSenha.getPassword());            
-//            String buscaNome = "SELECT * FROM PESSOA";
-//            
-//            try (Connection conn = DataBase.connect();                
-//                PreparedStatement pstmt = conn.prepareStatement(buscaNome)){
-//                ResultSet resultSet = pstmt.executeQuery();
-//                
-//                while (resultSet.next()){
-//                    String matri = resultSet.getString("MATRICULA");
-//                    String passw = resultSet.getString("PSW");
-//                    Integer func = resultSet.getInt("FUNCAO");
-//                    String nom = resultSet.getString("NOME");
-//                    if(mat.equals(matri)&&pass.equals(passw)&& func!=4){
-//                        JOptionPane.showMessageDialog(null,"Usuario não autorizado!!!\n"+ nom);
-//                        
-//                        break;
-//                    }                
-//                    else{
-//                        JOptionPane.showMessageDialog(null,"Seja Bem Vindo!!!\n"+ nom);
-//                        
-//                        
-//                    }
-//                }
-//                pstmt.executeUpdate();
-//            }catch (SQLException e) {
-//                //System.out.println(e.getMessage());
-//                //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
-//            }
-//        return false;
-//    }  
+  
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
            
             String mat = txtMatricula.getText();
@@ -191,7 +172,6 @@ public class TelaLogin extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
             }        
     }//GEN-LAST:event_btEntrarActionPerformed
-
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btSairActionPerformed
@@ -291,6 +271,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton btSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JFormattedTextField txtMatricula;
     private javax.swing.JPasswordField txtSenha;

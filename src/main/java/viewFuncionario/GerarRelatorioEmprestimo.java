@@ -15,9 +15,7 @@ import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Emprestimo;
-import model.bean.Pessoa;
 import model.dao.EmprestimoDAO;
-import model.dao.PessoaDAO;
 
 /**
  *

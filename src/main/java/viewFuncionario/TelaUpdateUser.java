@@ -73,8 +73,6 @@ public void cleanFields(){
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Livros"));
         setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 

@@ -66,8 +66,8 @@ public class EmprestimoDAO {
                 ac.setTitulo(rs.getString("TITULO"));
                 ac.setEditora(rs.getString("EDITORA"));
                 ac.setAno(rs.getInt("ANO"));
-                ac.setEstante(rs.getInt("ESTANTE"));
-                ac.setPrateleira(rs.getInt("PRATELEIRA"));
+                ac.setEstante(rs.getString("ESTANTE"));
+                ac.setPrateleira(rs.getString("PRATELEIRA"));
                 ac.setStatus(rs.getInt("STATUS"));
                 
                 acervos.add(ac);
@@ -77,7 +77,6 @@ public class EmprestimoDAO {
         }
         return acervos;
     }
-    
         public List<Emprestimo> readEmprestimo(){
         
         List<Emprestimo> emprestimos = new ArrayList<>();
@@ -103,21 +102,5 @@ public class EmprestimoDAO {
         }
         return emprestimos;
     }
-        
-//        public static List<Emprestimo> getEmprestimosByLivro(int livro){
-//        List<Emprestimo> emprestimos = new ArrayList();
-//        String sql = "SELECT * FROM EMPRESTIMO WHERE Livro_id="+livro;
-//        ConjuntoResultados lista = mysql.executaSelect(sql);
-//        while(lista.next()){
-//            Emprestimo emprestimo = new Emprestimo();
-//            emprestimo.setID(lista.getString("id"));
-//            emprestimo.setNome(lista.getString("nome"));
-//            emprestimo.setTelefone(lista.getString("telefone"));
-//            emprestimo.setDevolvido(lista.getString("devolvido"));
-//            emprestimo.setLivro(lista.getString("Livro_id"));
-//            emprestimos.add(emprestimo);
-//        }
-//        return emprestimos;
-//    }
-    }
+}
 

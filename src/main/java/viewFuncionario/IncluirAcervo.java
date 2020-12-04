@@ -316,9 +316,8 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,15 +348,14 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Acervo ac = new Acervo();
         AcervoDAO dao = new AcervoDAO();
         
         ac.setTitulo(txtTitulo.getText());
         ac.setAno(Integer.parseInt(txtAno.getText()));
-        ac.setEstante(Integer.parseInt(txtEstante.getText()));
-        ac.setPrateleira(Integer.parseInt(txtPrateleira.getText()));
+        ac.setEstante((txtEstante.getText()));
+        ac.setPrateleira((txtPrateleira.getText()));
         ac.setStatus(Integer.parseInt(txtStatus.getText()));
         ac.setEditora(txtEditora.getText());
         
@@ -377,7 +375,6 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Excluir ");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
             Acervo ac = new Acervo();
             AcervoDAO dao = new AcervoDAO();
@@ -386,8 +383,8 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
             ac.setEditora(txtEditora.getText());
             ac.setAno(Integer.parseInt(txtAno.getText()));
             ac.setStatus(Integer.parseInt(txtStatus.getText()));
-            ac.setEstante(Integer.parseInt(txtEstante.getText()));
-            ac.setPrateleira(Integer.parseInt(txtPrateleira.getText()));
+            ac.setEstante((txtEstante.getText()));
+            ac.setPrateleira((txtPrateleira.getText()));
             ac.setId((int)tabelaAcervo.getValueAt(tabelaAcervo.getSelectedRow(),0));
             dao.update(ac);
             cleanFields();
@@ -411,7 +408,6 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_tabelaAcervoKeyReleased
-
     private void tabelaAcervoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAcervoMouseClicked
 
         if (tabelaAcervo.getSelectedRow() != -1){
@@ -425,7 +421,6 @@ public class IncluirAcervo extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Selecione Um Livro para Excluir ");
         }
     }//GEN-LAST:event_tabelaAcervoMouseClicked
-
     private void btnListAllBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAllBooksActionPerformed
         readTabela();
     }//GEN-LAST:event_btnListAllBooksActionPerformed

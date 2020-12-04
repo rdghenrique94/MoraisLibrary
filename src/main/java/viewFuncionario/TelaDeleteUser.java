@@ -62,8 +62,6 @@ public class TelaDeleteUser extends javax.swing.JInternalFrame {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Livros"));
         setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
 
         jLabel1.setText("MATRICULA");
 

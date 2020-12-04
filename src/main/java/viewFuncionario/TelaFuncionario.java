@@ -19,8 +19,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuArquivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
         menuUser = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -33,6 +31,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -60,18 +60,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenu2.add(jMenuItem10);
 
         menuArquivo.add(jMenu2);
-
-        jMenu3.setText("Ficha Catalográfica");
-
-        jMenuItem5.setText("Gerar Ficha Catalográfica");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem5);
-
-        menuArquivo.add(jMenu3);
 
         menuSair.setText("Logout");
         menuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +146,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenu1.add(jMenuItem7);
 
         menuCadUser.add(jMenu1);
+
+        jMenu3.setText("Ficha Catalográfica");
+
+        jMenuItem5.setText("Gerar Ficha Catalográfica");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        menuCadUser.add(jMenu3);
 
         jMenu4.setText("Sobre");
 
