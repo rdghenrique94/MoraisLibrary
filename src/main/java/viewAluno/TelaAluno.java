@@ -70,9 +70,19 @@ public class TelaAluno extends javax.swing.JFrame {
         jMenu2.setText("Biblioteca");
 
         menuBuscar.setText("Buscar Livros");
+        menuBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBuscarActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuBuscar);
 
         menuReservar.setText("Reservar Livros");
+        menuReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReservarActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuReservar);
 
         jMenuBar1.add(jMenu2);
@@ -115,6 +125,7 @@ public class TelaAluno extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -129,9 +140,24 @@ public class TelaAluno extends javax.swing.JFrame {
         desktopAluno.add(tsf);
         tsf.setVisible(true);
     }//GEN-LAST:event_menuSolicitarFichaActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        TelaReservaSala trs = new TelaReservaSala();
+        desktopAluno.add(trs);
+        trs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void menuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBuscarActionPerformed
+        TelaBuscaLivro tbl = new TelaBuscaLivro();
+        desktopAluno.add(tbl);
+        tbl.setVisible(true);
+
+    }//GEN-LAST:event_menuBuscarActionPerformed
+
+    private void menuReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReservarActionPerformed
+        TelaReservarLivro trv = new TelaReservarLivro();
+        desktopAluno.add(trv);
+        trv.setVisible(true);
+    }//GEN-LAST:event_menuReservarActionPerformed
 
     /**
      * @param args the command line arguments

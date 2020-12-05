@@ -159,7 +159,8 @@ public class AcervoDAO {
         List<Acervo> acervos = new ArrayList<>();
         
         try (Connection conn = DataBase.connect();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT ID_ACERVO, TITULO, EDITORA, ANO, ESTANTE, PRATELEIRA, STATUS FROM ACERVO"
+            PreparedStatement pstmt = conn.prepareStatement("SELECT ID_ACERVO, TITULO, EDITORA, ANO, ESTANTE, PRATELEIRA, STATUS"
+                    + " FROM ACERVO"
                     + " INNER JOIN ESTANTES ON ACERVO.ESTANTE = ESTANTES.ESTANTES"
                     + " LEFT JOIN PRATELEIRA ON ACERVO.PRATELEIRA = PRATELEIRA.PRATELEIRAS"
             )){

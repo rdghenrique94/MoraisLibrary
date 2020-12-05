@@ -33,6 +33,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -159,6 +161,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         menuCadUser.add(jMenu3);
 
+        jMenu5.setText("Importar");
+
+        jMenuItem8.setText("Importar Arquivo CSV");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        menuCadUser.add(jMenu5);
+
         jMenu4.setText("Sobre");
 
         jMenuItem1.setText("Informações");
@@ -254,9 +268,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        GerarFichaCatalografica gfc = new GerarFichaCatalografica();
-        desktopFuncionario.add(gfc);
-        gfc.setVisible(true);
+        FichaCatalografica fc = new FichaCatalografica();
+        desktopFuncionario.add(fc);
+        fc.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -266,6 +280,12 @@ public class TelaFuncionario extends javax.swing.JFrame {
         gre.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        ArquiSelect as = new ArquiSelect();
+        desktopFuncionario.add(as);
+        as.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -305,6 +325,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem12;
@@ -315,6 +336,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuCadUser;

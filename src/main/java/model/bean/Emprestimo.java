@@ -1,7 +1,5 @@
 package model.bean;
 
-import model.*;
-
 public class Emprestimo {
     
     private int id;
