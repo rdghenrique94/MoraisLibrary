@@ -151,26 +151,34 @@ public class DataBase {
             pstmt.executeUpdate();
             //closeConnection(conn, pstmt, resultSet);
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
     }
     
-    public void selectT_Sala(int id_sala){
-        String sala = "SELECT SALA,STATUS_V FROM VAGAS INNER JOIN ST_VAGAS ON VAGAS.STATUS_V = ST_VAGAS.ST_VAGA WHERE ID_VAGAS = ?";
+    public void selectT_Sala(int id_sa){
+        //String sala = "select ID_VAGAS,STATUS_V from VAGAS WHERE ID_VAGAS= ?";
+        String sala = "SELECT SALA,STATUS_V FROM VAGAS INNER JOIN ST_VAGAS ON VAGAS.STATUS_V = ST_VAGAS.ST_VAGA WHERE ID_VAGAS=?";
         try(Connection conn = DataBase.connect();
             PreparedStatement stSala = conn.prepareStatement(sala)){
-            stSala.setInt(1,id_sala);
+            stSala.setInt(1,id_sa);
             ResultSet rs = stSala.executeQuery();
             
-            while (rs.next()){
-                String 
-            }
             
-                stSala.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+            while (rs.next()){
+                String vaga = rs.getString("SALA");
+                String status = rs.getString("STATUS_V");
+                
+                System.out.println(vaga + "|" + status);
             }
+                stSala.executeUpdate();
+                closeConnection(conn,stSala);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
+    }
+    
     
     
     public void selectT_Reserva(String status,int id_vagas){
@@ -242,5 +250,6 @@ public class DataBase {
         //app.deleteT_Acervo(30001,2020);
         //app.selectT_Acervo();
         //app.select(30002);
+        //app.selectT_Sala(3);
     }
 }
