@@ -154,6 +154,25 @@ public class DataBase {
             //JOptionPane.showMessageDialog(null,"Usuario ou Senha Incorretos!");
         }
     }
+    
+    public void selectT_Sala(int id_sala){
+        String sala = "SELECT SALA,STATUS_V FROM VAGAS INNER JOIN ST_VAGAS ON VAGAS.STATUS_V = ST_VAGAS.ST_VAGA WHERE ID_VAGAS = ?";
+        try(Connection conn = DataBase.connect();
+            PreparedStatement stSala = conn.prepareStatement(sala)){
+            stSala.setInt(1,id_sala);
+            ResultSet rs = stSala.executeQuery();
+            
+            while (rs.next()){
+                String 
+            }
+            
+                stSala.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    
+    
     public void selectT_Reserva(String status,int id_vagas){
             //String sql = "select * from ACERVO WHERE EDITORA = '?'";
             String buscaVaga = "SELECT * FROM VAGAS WHERE STATUS = ? AND ID_VAGAS= ?";
